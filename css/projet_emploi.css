@@ -1,9 +1,16 @@
+body, html {
+	height: 100%;
+}
+
+body {	
+	padding-top: 150px;
+}
+
+
 p {
 		font-size: 20px;
 		text-align: justify;
 }
-
-
 
 .liste_inscription{
 	padding: 50px;
@@ -19,6 +26,40 @@ p {
     border-radius: 1em;
 }
 
+.btn-emploi-search {
+		margin-top : 20px;
+		margin-bottom:20px;
+		width:100%;
+}
+
+.big-select {
+	width:100%;
+	max-width:100%;
+}
+
+.candidate-menu, .rh-menu {
+	border-top:solid black 1px;
+}
+
+.card {
+	float: left;
+	
+    width: 33.333%;
+    padding: .75rem;
+    margin-bottom: 2rem;
+	
+	position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    background-color: #fff;
+}
 
 .card-text {
 	font-size:95%;
@@ -29,6 +70,18 @@ p {
 	text-align:center;	
 }
 
+.centrer{
+    margin-left:25%;
+    margin-right: 25%;
+
+
+}
+
+#contenu{
+    background-color: rgb(187,223,223);
+    margin:0;
+
+}
 
 .competences-exigees p {
 	font-style:italic;
