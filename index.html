@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+ 	   	<meta name="description" content="">
+  		<meta name="author" content="">
+    	<link rel="icon" href="../../favicon.ico">
+		<title>Projet Emploi</title>
+        <link rel="stylesheet" href="./css/projet_emploi.css" />
+        <link href="./bootstrap/css/bootstrap.css" rel="stylesheet">
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    	<link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+	</head>
+	<body>
+
+		<!--Début du menu-->
+		<nav class="navbar navbar-default navbar-fixed-top">
+			<div class="container-fluid">
+			
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+			
+				<div class="collapse navbar-collapse">
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="#">Accueil <span class="sr-only">(current)</span></a></li>
+						<li><a href="./html/offres_emploi.html">Nos offres d'emploi</a></li>
+						<li class="dropdown navbar-right">
+							<a href="#" data-toggle="dropdown" class="dropdown-toggle">Inscriptions <b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li><a href="./html/Inscription_PRO.html">Inscription candidat</a></li>
+								<li class="divider"></li>
+								<li><a href="./html/Inscription_RH.html">Inscription RH</a></li>
+							</ul>
+						</li>
+					</ul>
+					
+					<!--Formulaire de connexion intégré au menu du site-->
+					<form class="navbar-form navbar-right" role="connexion">
+						<div class="form-group">
+							<input type="text" class="form-control" placeholder="Email">
+							<input type="password" class="form-control" placeholder="Mot de passe">
+						</div>
+						<button type="submit" class="btn btn-default">Connexion</button>
+					</form>
+				</div>
+				
+				<div class="collapse navbar-collapse candidate-menu">
+					<ul class="nav navbar-nav">
+						<li><a href="#">Réponses à vos candidatures</a></li>
+						<li><a href="#">Modifier votre profil</a></li>
+					</ul>	
+				</div>
+				
+				<div class="collapse navbar-collapse rh-menu">
+					<ul class="nav navbar-nav">
+						<li><a href="./html/creation_offre_emploi.html">Créer une offre d'emploi</a></li>
+						<li><a href="./html/rechercher_candidat.html">Rechercher des candidats</a></li>
+					</ul>
+					
+				</div>
+			</div>
+		</nav>
+		
+		
+		<!--Fin du menu-->
+
+		<div class="parallax parallax1"></div>
+		
+		<div class="container-fluid parallax-container">
+			<h1 class="centered">Le site Projet Emploi</h1>
+			<p>Dans une société en constante évolution, il peut être difficile de trouver sa place. Les opportunités de rentrer dans le monde du travail peuvent sembler rare. Cette plateforme s'est donné pour mission de permettre aux entreprises et aux demandeurs d'emploi de communiquer plus aisément.
+			Ainsi nous nous sommes donnés pour mission de réunir demandeurs d'emploi et recruteurs, et de leur offrir une plateforme sur laquelle ils puissent interagir.
+			</p>
+		</div>
+		
+		<div class="album text-muted">
+			<div class="container">
+				<div class="row">
+					<div class="card">
+						<a href="./html/offres_emploi.html"><img src="./images/find_job.png" class="img_album" alt="Photo de montagne" data-holder-rendered="true" /></a>
+						<p class="card-text">Consultez nos offres d'emploi concernant des domaines divers et variés, et trouvez l'emploi qui vous correspond.</p>
+					</div>
+					<div class="card">
+						<a href="./html/Inscription_PRO.html"><img class="img_album" src="./images/profil_candidat.png" alt="Photo de montagne" /></a>
+						<p class="card-text">Inscrivez-vous sur le site en tant que candidat pour pouvoir postuler à nos offres d'emploi.</p>
+					</div>
+					<div class="card">
+						<a href="./html/contact.html"><img class="img_album" src="./images/contact_rh.png" alt="Photo de montagne" /></a>
+						<p class="card-text">Entrez en contact avec nos recruteurs et commencez dès maintenant à élargir votre réseau professionnel.</p>
+					</div>
+				</div>
+				<form role="contact-rh">
+						<div class="form-group">
+							<label class="light-margin" for="comment">A :</label>
+							<select class="big-select" name="coordonnee-rh" size="3">
+									<option>Hervé Duttelier</option>
+									<option>Rémi Gaillard</option>
+									<option>Tristan Corbière</option>
+									<option>Bruce Grannec</option>
+									<option>Karim Benguigui</option>
+								</select>
+							<label class="light-margin" for="comment">Sujet :</label>
+							<input  type="text" class="form-control light-margin" placeholder="Bug, renseignements, support ...">
+							<label class="light-margin" for="comment">Demande :</label>
+							<textarea class="form-control light-margin" rows="10" id="desc_requete-contact"></textarea>
+							<button type="submit" class="btn btn-default light-margin">Envoyer la demande</button>
+						</div>
+				</form>
+			</div>
+		</div>
+			
+		<div class="parallax parallax2"></div>
+		<div class="container-fluid parallax-container">
+			<h1 class="centered">Candidats, postulez aux offres de nos recruteurs</h1>
+			<p>
+			Il vous est possible, sans même être enregistré sur notre site, de consulter les offres d'emploi de notre site et de contacter les recruteurs ayant posté ces offres.
+			En revanche il faudra préalablement vous enregistrer sur notre site <a href="./html/Inscription_PRO.html">ici</a> (ou vous connecter si vous êtes déjà inscrit) afin de pouvoir postuler aux offres d'emploi présentées sur notre site.
+			</p>
+		</div>
+		
+		<div class="album text-muted">
+			<div class="container">
+				<div class="row">
+					<div class="card">
+						<a href="./html/offres_emploi.html"><img src="./images/postuler_offre.png" class="img_album" alt="Photo de montagne" data-holder-rendered="true" /></a>
+						<p class="card-text">Postulez aux offres d'emploi de nos recruteurs.</p>
+					</div>
+					<div class="card">
+						<a href="./html/Inscription_PRO.html"><img class="img_album" src="./images/modif_profil.png" alt="Photo de montagne" /></a>
+						<p class="card-text">Modifier votre profil à mesure que vous accumulez des compétences.</p>
+					</div>
+					<div class="card">
+						<a href="./html/contact.html"><img class="img_album" src="./images/rep_candidature.jpg" alt="Photo de montagne" /></a>
+						<p class="card-text">Consulter les réponses à vos candidatures.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="parallax parallax3"></div>
+		<div class="container-fluid parallax-container">
+			<h1 class="centered">Recruteurs, publiez vos offres d'emploi</h1>
+			<p>
+			Parce que nous considérons le travail de recruteur fondamental pour la bonne santé d'une entreprise, nous vous proposons sur ce site divers outils afin de trouver les profils qui correspondent à vos attentes.
+			En effet vous pouvez non seulement poster des offres sur le site, mais aussi consulter les profils de candidats enregistrés selon leurs expériences, leur domaine d'activité, etc. 
+			</p>
+		</div>
+		
+		<div class="album text-muted">
+			<div class="container">
+				<div class="row">
+					<div class="card">
+						<a href="./html/creation_offre_emploi.html"><img src="./images/creer_offre.png" class="img_album" alt="Photo de montagne" data-holder-rendered="true" /></a>
+						<p class="card-text">Créer vos offres d'emploi et diffusez-les sur notre plateforme.</p>
+					</div>
+					<div class="card">
+						<a href="./html/Inscription_PRO.html"><img class="img_album" src="./images/find_candidate.png" alt="Photo de montagne" /></a>
+						<p class="card-text">Cherchez parmi les candidats inscrits ceux dont le profil correspond le mieux à vos attentes, et contactez-les.</p>
+					</div>
+					<div class="card">
+						<a href="#"><img class="img_album" src="./images/modifier_candidature.png" alt="Photo de montagne" /></a>
+						<p class="card-text">Managez vos offres d'emploi. Acceptez, refusez ou encore blacklistez les candidats.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+
+		<footer>
+			<a href="./html/contact.html"> Contact </a>
+		</footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+	</body>
+
+</html>
