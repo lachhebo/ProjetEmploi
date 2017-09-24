@@ -1,4 +1,7 @@
-<!DOCTYPE html>
+<?php  
+$bdd = new PDO('mysql:host=localhost;dbname=espace_membre;charset=utf8','root','');
+
+?>
 <html>
 	<head>
 		<title>Projet Emploi</title>
@@ -38,23 +41,6 @@
                     <li class="active"><a   href="index.php"></span> Accueil</a></li>
                     <li><a href="offres_emploi.php">Offres</a></li>
                     <li><a href="Profils.php">Profils</a></li>
-                   <!-- <li><a href="aboutus.html"> 
-                        </span> About</a></li>
-                    <li class="dropdown">
-                        <a href="index.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> 
-                      </span> Menu <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="contactus.html#">Main Courses</a></li>
-                            <li><a href="contactus.html#">Bootstrap</a></li>
-                            <li><a href="contactus.html#">Asp</a></li>
-                            <li><a href="contactus.html#">SQl</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li class="dropdown-header">PHP</li>
-                            <li><a href="contactus.html#">MySQl</a></li>
-                           
-                        </ul>
-                    </li>
-                  -->
                     <li><a href="#"><span class="fa fa-envelope-o"></span> Contact</a></li>                   
     
                 </ul>
@@ -111,41 +97,41 @@
 						<h3 class="text-center"> <b>Formulaire d'inscription Professionnelle </b></h3>
 					</div>
 					<div class="col-xs-5">
-						<form class="form"  >
+						<form class="form" method="POST" action="" >
 							<div class="form-group"> 
-								<label for="name">Nom</label>
-								<input type="text" id="name" class="form-control" placeholder="Nom" >
+								<label for="name">Nom :</label>
+								<input type="text" id="name" class="form-control" placeholder="Nom" name="name">
 							</div>
 							<div class="form-group"> 
-								<label for="firstname">Prénom</label>
-								<input type="text" id="name" class="form-control">
+								<label for="firstname">Prénom: </label>
+								<input type="text" id="fistname" class="form-control" name="firstname" placeholder="Nom">
 							</div>
 							<div class="form-group">
-								<label for="mdp">Mot de passe</label>
-								<input type="password" id="mdp" class="form-control">
+								<label for="mdp">Mot de passe: </label>
+								<input type="password" id="mdp" class="form-control" name="mdp" placeholder="Nom">
 							</div>
 							<div class="form-group">
-								<label for="date">Date de naissance </label>
-								<input type="date" name="date">
+								<label for="date">Date de naissance: </label>
+								<input type="date" name="date" class="form-group" id="date" placeholder="Nom">
 							</div>
-							<div class="form-group">
-								<label for="exp">Tes Expériences</label>
+						<!--	<div class="form-group">
+								<label for="exp">Tes Expériences: </label>
 								<textarea name="exp" id="exp" class="form-control"></textarea>
+							</div> -->
+							<div class="form-group">
+								<label for="tel">Téléphone: </label>
+								<input type="tel" id="tel" class="form-control" name="tel" placeholder="Nom">
 							</div>
 							<div class="form-group">
-								<label for="tel">Téléphone</label>
-								<input type="tel" id="tel" class="form-control">
+								<label for="email">Email: </label>
+								<input type="text" id="email" class="form-control" name="email" placeholder="Nom">
 							</div>
 							<div class="form-group">
-								<label for="email">Email</label>
-								<input type="text" id="Email" class="form-control">
+								<label for="adres">Adresse: </label>
+								<input type="text" id="adres" class="form-control" name="adres" placeholder="Nom">
 							</div>
-							<div class="form-group">
-								<label for="adresse">Adresse</label>
-								<input type="text" id=adr class="form-control">
-							</div>
-							<div class="center-block">
-							<BUTTON type="connexion" class="btn btn-default">Inscription</BUTTON>
+							<div align="center">
+							<input type="submit" value="Je m'inscris"></input>
 							</div>
 						</form>
 					</div>
