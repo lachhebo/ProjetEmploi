@@ -38,7 +38,7 @@
                     <li class="active"><a   href="index.php"></span> Accueil</a></li>
                     <li><a href="html/offres_emploi.php">Offres</a></li>
                     <li><a href="html/Profils.php">Profils</a></li>
-                   <!-- <li><a href="aboutus.html"> 
+                   <!-- <li><a href="aboutus.html" test> 
                         </span> About</a></li>
                     <li class="dropdown">
                         <a href="index.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> 
