@@ -32,11 +32,27 @@ class Database{
 		return $this->pdo; 
 	}
 
-	public function query($statement){
+	public function query($statement, $class_name){
 		$req = $this->getPDO()->query($statement);
-		$datas = $req->fetchAll(PDO::FETCH_OBJ); 
+		$datas = $req->fetchAll(PDO::FETCH_CLASS, $class_name); 
 		return $datas; 
 	}
+
+	public function prepare($statement, $attributes, $class_name, $one= false){
+		$req = $this->getPDO()->prepare($statement);
+		$req->execute($attributes); 
+		$req->setFetchMode(PDO::FETCH_CLASS, $class_name); 
+		if($one){
+			$datas = $req->fetch(); 
+		}
+		else{
+			$datas = $req->fetchAll();
+		}
+		return $datas;
+
+	}
+
+
 }
 
 

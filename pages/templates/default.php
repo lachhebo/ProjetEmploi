@@ -1,6 +1,5 @@
 <html>
 	<head>
-		<title>Projet Emploi</title>
 		<meta charset="utf-8">
     	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,6 +14,8 @@
   		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"> </script>
+
+      <title><?= App\App::getTitle(); ?> </title>
 
 	</head>
 	<body>
@@ -95,13 +96,28 @@
 
 		--> 
 
-		<div class ="starter-template" style="padding: 100px;">
+		<div class ="starter-template" style="padding-top: 100px; padding-right: 50px; padding-left: 50px; padding-bottom: 300px;  ">
 			<?= $content; ?> 
 		</div>
 
-		<footer>
-			<a href="./html/contact.html"> Contact </a>
-		</footer>
+<!--  <footer class="footer-distributed">
+      <div class="footer-right">
+        <a href="#"><img src="../images/icon_fb.png" alt="icone facebook" /></a>
+        <a href="#"><img src="../images/icon_twitter.png" alt="icone twitter" /></a>
+        <a href="#"><img src="../images/icon_linkedin.png" alt="icone linkedin" /></a>
+      </div>
+      <div class="footer-left">
+        <p class="footer-links">
+          <a href="../index.html">Accueil</a>
+          .
+          <a href="#">Contact</a>
+        </p>
+        <p>Projet Emploi &copy; 2017</p>
+      </div>
+    </footer>
+-->
+
+
 	</body>
 
 </html>

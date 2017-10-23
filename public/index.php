@@ -2,15 +2,7 @@
 
 
 require '../app/Autoloader.php'; 
-
 App\Autoloader::register(); 
-
-
-//Initialisations des objets : 
-
-$db = new App\Database('espace_membres'); 
-
-$data =$db->query('SELECT * from membres');  
 
 
 
@@ -26,8 +18,8 @@ ob_start();
 
 if($p === 'home'){
 	require '../pages/home.php'; 
-} else if ($p ==='creation'){
-	require '../pages/offre_creation.php' ;  
+} else if ($p ==='offre'){
+	require '../pages/offre.php' ;  
 
 }
 
