@@ -24,15 +24,17 @@ ob_start();
 
 if($p === 'home'){
 	require '../pages/home.php'; 
-} else if ($p ==='offre'){
+} elseif ($p ==='offre'){
 	require '../pages/offre.php' ; 
 } elseif ($p === 'recherche' ) {
 	$_GET['q'] = $q;  
 	require '../pages/recherche.php'; 
-} elseif ($p = 'liste_offre') {
+} elseif ($p === 'liste_offre') {
 	require '../pages/liste_offre.php';
-} elseif ($p = 'profil'){
+} elseif ($p === 'profil'){
 	require '../pages/profil.php';
+} elseif ($p === 'inscription') {
+	require '../pages/inscription.php'; 
 }
 
 

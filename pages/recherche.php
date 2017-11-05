@@ -2,7 +2,7 @@
 <div class= "row">
 	<div class="col-xs-8" id="zone_affichage">
 
-		<h3 > Recherche resultat : </h3>
+		<h1 > Recherche resultat : </h1>
 
 		<?php 
 			if(isset($_GET['q']) AND !empty($_GET['q'])) {
@@ -13,12 +13,10 @@
 	   	<?php
 	   	if(isset($_GET['q']) AND !empty($_GET['q'])) {
 	   		$mot_cle = $_GET["q"];
-	   		
+
 
 	   		foreach (App\Table\Offre::recherche($mot_cle) as $resultoffre):
-	   		echo $resultoffre->nom 
 	   	?> 
-	   		<h3 > Recherche resultat : </h3>
 
 			<h2><a href="<?= $resultoffre->getURL() ?>"><?= $resultoffre->nom; ?></a> </h2>
 			<p><em><?=  $resultoffre->categorie ?> </em></p>

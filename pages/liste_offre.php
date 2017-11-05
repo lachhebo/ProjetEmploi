@@ -1,7 +1,7 @@
 <div class= "row">
 	<div class="col-xs-8" id="zone_affichage">
 
-		<h3 > Offres : </h3>
+		<h1 > Offres : </h1>
 
 			<?php foreach (App\Table\Offre::getLast() as $post):
 				 ?> 
