@@ -17,6 +17,8 @@
 
       <title><?= App\App::getTitle(); ?> </title>
 
+      <script src = "js\script.js"  type="text/javascript"></script>
+
 	</head>
 	<body>
 
@@ -35,9 +37,9 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href=#></span> Accueil</a></li>
-                    <li><a href=#>Offres</a></li>
-                    <li><a href=#>Profils</a></li>
+                    <li><a href= "index.php"></span> Accueil</a></li>
+                    <li><a href= "index.php?p=liste_offre">Offres</a></li>
+                    <li><a href="index.php?p=profil">Profils</a></li>
     
                     <li><a href=#><span class="fa fa-envelope-o"></span> Contact</a></li>
                     

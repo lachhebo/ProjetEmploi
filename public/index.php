@@ -13,15 +13,28 @@ if(isset($_GET['p'])){
  	$p = 'home'; 
  }
 
+if(isset($_GET['q'])){
+	$q = $_GET['q']; 
+	var_dump($q); 
+ }
+
+
 
 ob_start(); 
 
 if($p === 'home'){
 	require '../pages/home.php'; 
 } else if ($p ==='offre'){
-	require '../pages/offre.php' ;  
-
+	require '../pages/offre.php' ; 
+} elseif ($p === 'recherche' ) {
+	$_GET['q'] = $q;  
+	require '../pages/recherche.php'; 
+} elseif ($p = 'liste_offre') {
+	require '../pages/liste_offre.php';
+} elseif ($p = 'profil'){
+	require '../pages/profil.php';
 }
+
 
 
 $content = ob_get_clean(); 
