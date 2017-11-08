@@ -1,10 +1,13 @@
 <?php 
 
-
 require '../app/Autoloader.php'; 
 App\Autoloader::register(); 
 
 
+session_start(); 
+
+//if($_SESSION['type']!=null){
+//} 
 
 
 if(isset($_GET['p'])){
@@ -15,7 +18,7 @@ if(isset($_GET['p'])){
 
 if(isset($_GET['q'])){
 	$q = $_GET['q']; 
-	var_dump($q); 
+	//var_dump($q); 
  }
 
 

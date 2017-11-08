@@ -1,3 +1,15 @@
+<?php 
+if(isset($_POST['identififiant']) and isset($_POST['password'])) {
+	$initie = new App\Table\Personnage(null, null,$_POST["password"],null,null, $_POST['identififiant'],null);
+	$test = $initie->connexion(); 
+	if($test==1){
+		unset($initie); 
+	}
+	
+}
+?>
+
+
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -18,13 +30,10 @@
 			<title><?= App\App::getTitle(); ?> </title>
 
 			<script src = "js\script_recherche.js"  type="text/javascript"></script>
-			<script src = "js\connect_as.js"  type="text/javascript"></script>
+			<!--<script src = "js\connect_as.js"  type="text/javascript"></script> -->
 			<script src = "js\show_full_offer.js"  type="text/javascript"></script>
-			<script src = "js\sign_in.js"  type="text/javascript"></script>
+			<!--<script src = "js\sign_in.js"  type="text/javascript"></script> -->
 			<script src = "js\script_tabulation.js"  type="text/javascript"></script>
-
-
-
 	</head>
 	<body>
 
@@ -69,14 +78,14 @@
 				<h4>Login</h4>
 			</div>
 			<div class="modal-body">
-				<form class="form-inline">
+				<form class="form-inline" method="POST" action="">
 					<div class="row">
 
 						<div class="col-xs-4">
-							<input type="text" class="form-control" placeholder="Email" id="email" name="email">
+							<input type="text" name ="identififiant" class="form-control" placeholder="Email" id="email" name="email">
 						</div>
 						<div class="col-xs-4">
-							<input type="password" class="form-control" placeholder="Password" id="password" name="password">
+							<input type="password" name ="password" class="form-control" placeholder="Password" id="password" name="password">
 						</div>
 						<div class="col-xs-4">
 							<button type="submit" class="btn btn-info modal_sign_in" id="sign_in_btn">Sign in</button>

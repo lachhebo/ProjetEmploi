@@ -1,6 +1,13 @@
-$( document ).ready(function(){
+window.onload=function(){
 
-    document.getElementById("Recherche").addEventListener("click", recherche);
+    var el = document.getElementById('Recherche');
+
+    if(el){
+      el.addEventListener('click', recherche);
+    }
+
+};
+
 
     function recherche() {
 
@@ -9,7 +16,3 @@ $( document ).ready(function(){
         window.location.replace("../public/index.php?p=recherche&q="+mot_cle);
 
     }
-
-
-
-});

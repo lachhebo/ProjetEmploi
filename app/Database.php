@@ -21,8 +21,7 @@ class Database{
 		$this->db_host = $db_host;
 	}
 
-
-	private function getPDO(){
+	public function getPDO(){
 		if ($this->pdo === null) {
 			$pdo = new PDO('mysql:host=localhost;dbname=espace_membre;charset=utf8', 'root', '');
 			$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
@@ -51,7 +50,6 @@ class Database{
 		return $datas;
 
 	}
-
 
 }
 
