@@ -9,10 +9,12 @@ if(isset($_POST['identififiant']) and isset($_POST['password'])) {
 		$initie->recuperer_donnee(); 
 		$initie->session(); 
 
+
 	}
 }
 
-var_dump($_SESSION); 
+
+
 ?>
 
 
@@ -58,23 +60,37 @@ var_dump($_SESSION);
 						</div>
 						<div id="navbar" class="navbar-collapse collapse">
 								<ul class="nav navbar-nav">
+									<?php     ?>
 										<li><a href= "index.php"></span> Accueil</a></li>
 										<li><a href= "index.php?p=liste_offre">Offres</a></li>
+									<?php if(isset($_SESSION['email'])){  ?>
 										<li><a href= "index.php?p=profil">Profils</a></li>
-		
+									<?php } ?>
+
 										<li><a href=#><span class="fa fa-envelope-o"></span> Contact</a></li>
 										
 										
 		
 								</ul>
+							
 							 <ul class="nav navbar-nav navbar-right">
-									 <li><a data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-log-in"></span> login</a></li>
-								</ul>
-																							
+							 		<?php if(!isset($_SESSION['email'])){ ?>
+									 	<li><a data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-log-in"></span> login</a></li>
+									 <?php }
+									 else{ ?>
+									 	<li><a href="index.php?p=deconnexion">Deconnexion </button><span class="glyphicon glyphicon-log-in"></li>
+
+									 <?php } ?> 
+
+									 
+							</ul>
+																						
 			 
 						</div>
 				</div>
 	 </nav>
+
+	 <?php if(!isset($_SESSION['email'])){ ?>
 		
 		<div id="loginModal" class="modal fade" role="dialog">
 	<div class="modal-dialog">
@@ -112,6 +128,7 @@ var_dump($_SESSION);
 	</div>
 </div>
 
+	<?php } ?> 
 
 
 		<!-- FIN DU MENU : 
