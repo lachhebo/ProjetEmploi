@@ -5,8 +5,14 @@ if(isset($_POST['identififiant']) and isset($_POST['password'])) {
 	if($test==1){
 		unset($initie); 
 	}
-	
+	else{
+		$initie->recuperer_donnee(); 
+		$initie->session(); 
+
+	}
 }
+
+var_dump($_SESSION); 
 ?>
 
 

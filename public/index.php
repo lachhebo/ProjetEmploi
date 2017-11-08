@@ -6,8 +6,6 @@ App\Autoloader::register();
 
 session_start(); 
 
-//if($_SESSION['type']!=null){
-//} 
 
 
 if(isset($_GET['p'])){

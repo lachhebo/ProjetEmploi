@@ -22,10 +22,6 @@ class Personnage{
 	private $type;  //0 pour employé et 1 pour RH 
 
 
-
-	private static $id =0; 
-
-
 	public function __construct($nom, $prenom,$motdepasse, $date, $telephone, $email, $adresse, $entreprise= null, $secteur = null){
 		$this->nom = $nom; 
 		$this->prenom = $prenom; 
@@ -89,8 +85,6 @@ class Personnage{
 
 				return 0;
 
-
-
 			}
 		else{
 			return 1; 
@@ -112,7 +106,7 @@ class Personnage{
 		$mypdostatement->execute(array('mdp' => $hash, 'email'=>$this->email));
 		$verification = $mypdostatement->fetch();
 
-		var_dump($verification); 
+		//var_dump($verification); 
 
 		if($verification!=null){
 			//var_dump($this);
@@ -122,8 +116,55 @@ class Personnage{
 			//var_dump($this);
 			return 1; 
 		}
+	}
+
+	public function recuperer_donnee(){
+
+		$mybase = App::getDb(); 
+		$mypdo = $mybase->getPDO();
+
+		$hash = sha1($this->motdepasse);
+		$sql = 'SELECT * FROM membres WHERE motdepasse=:mdp and mail= :email'; 
 
 
+		$mypdostatement = $mypdo->prepare($sql);
+		$mypdostatement->execute(array('mdp' => $hash, 'email'=>$this->email));
+		$verification = $mypdostatement->fetch();
+
+
+		$this->nom = $verification['nom']; 
+		$this->prenom = $verification['prenom']; 
+		$this->adresse = $verification['adresse']; 
+		$this->date_naissance = $verification['date_naissance']; 
+		$this->telephone = $verification['telephone']; 
+
+		$this->type = $verification['type']; 
+
+		if($this->type == 1){
+			$this->entreprise = $verification['entreprise']; 
+			$this->secteur_activite = $verification['secteur_activite'];
+		}
+
+	}
+
+
+	public function session(){
+ 
+		$_SESSION['email'] = $this->email;
+		$_SESSION['nom'] = $this->nom; 
+		$_SESSION['prenom'] = $this->prenom; 
+		$_SESSION['adresse'] = $this->adresse; 
+		$_SESSION['date_naissance'] = $this->date_naissance;
+		$_SESSION['telephone'] = $this->telephone; 
+
+		$_SESSION['type'] =  $this->type;
+
+		if($this->type == 1){
+			$_SESSION['entreprise'] = $this->entreprise; 
+			$_SESSION['secteur_activite'] = $this->secteur_activite; 
+		}
+
+		
 
 	}
 
