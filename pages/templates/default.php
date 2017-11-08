@@ -8,8 +8,6 @@ if(isset($_POST['identififiant']) and isset($_POST['password'])) {
 	else{
 		$initie->recuperer_donnee(); 
 		$initie->session(); 
-
-
 	}
 }
 
@@ -68,6 +66,12 @@ if(isset($_POST['identififiant']) and isset($_POST['password'])) {
 									<?php } ?>
 
 										<li><a href=#><span class="fa fa-envelope-o"></span> Contact</a></li>
+
+									<?php if(isset($_SESSION['email']) and isset($_SESSION['entreprise']) ){  ?>
+										<li><a href= "index.php?p=recherche_candidat">Recherche candidat</a></li>
+										<li><a href= "index.php?p=creation_offre">Créer une offre</a></li>
+										
+									<?php } ?>
 										
 										
 		

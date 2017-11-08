@@ -10,7 +10,8 @@ if(isset($_POST['name']) and isset($_POST['firstname']) and isset($_POST['email'
             var_dump($initie); 
             $possible = $initie->ajouter_perso_bdd();
             if($possible == 0){
-              //start_session(); 
+              $initie->recuperer_donnee(); 
+              $initie->session(); 
               header("Location:../public/index.php");
             }
             else{
@@ -23,7 +24,8 @@ if(isset($_POST['name']) and isset($_POST['firstname']) and isset($_POST['email'
             var_dump($initie); 
             $possible = $initie->ajouter_perso_bdd();
             if($possible == 0){
-              //start_session(); 
+              $initie->recuperer_donnee(); 
+              $initie->session(); 
               header("Location:../public/index.php");
             }
             else{
