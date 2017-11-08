@@ -1,8 +1,9 @@
-// Get the element with id="defaultOpen" and click on it
-$( document ).ready(function(){
+window.onload=function(){
     document.getElementById("defaultOpen").click();
-    console.log(teta); 
-});
+
+   //var tab1 = document.getElementById("defaultOpen"); 
+   //el.addEventListener('click', recherche);
+} 
 
 
 function opentab(evt, Formulaire) {

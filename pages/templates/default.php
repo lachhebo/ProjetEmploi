@@ -79,10 +79,10 @@ if(isset($_POST['identififiant']) and isset($_POST['password'])) {
 							
 							 <ul class="nav navbar-nav navbar-right">
 							 		<?php if(!isset($_SESSION['email'])){ ?>
-									 	<li><a data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-log-in"></span> login</a></li>
+									 	<li><a data-toggle="modal" data-target="#loginModal">login  <span class="glyphicon glyphicon-log-in"></span></a></li>
 									 <?php }
 									 else{ ?>
-									 	<li><a href="index.php?p=deconnexion">Deconnexion </button><span class="glyphicon glyphicon-log-in"></li>
+									 	<li><a href="index.php?p=deconnexion">Deconnexion  <span class="glyphicon glyphicon-log-out"></span></a></li>
 
 									 <?php } ?> 
 
