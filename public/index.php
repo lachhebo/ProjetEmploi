@@ -32,16 +32,20 @@ if($p === 'home'){
 	$_GET['q'] = $q;  
 	require '../pages/recherche.php'; 
 } elseif ($p === 'liste_offre') {
-	echo 'le test marche';
 	require '../pages/liste_offre.php';
 } elseif ($p === 'profil'){
 	//echo 'le test marche'; 
+	//à sécuriser 
 	require '../pages/profil.php';
 } elseif ($p === 'inscription') {
 	require '../pages/inscription.php'; 
-} elseif ($p === 'deconnexion') {
-	echo 'la vie belle'; 
+} elseif ($p === 'deconnexion') { 
 	require '../pages/deconnexion.php';
+} elseif ($p === 'recherche_candidat') {
+	require '../pages/recherche_candidat.php'; 
+} elseif ($p === 'creation_offre') {
+	//à securiser 
+	require '../pages/creation_offre.php'; 
 }
 
 
