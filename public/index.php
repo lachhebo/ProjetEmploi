@@ -27,6 +27,8 @@ if($p === 'home'){
 	require '../pages/home.php'; 
 } elseif ($p ==='offre'){
 	require '../pages/offre.php' ; 
+} elseif ($p === 'candidat') {
+	require '../pages/candidat.php'; 
 } elseif ($p === 'recherche' ) {
 	//echo 'le test marche';
 	$_GET['q'] = $q;  
@@ -41,12 +43,17 @@ if($p === 'home'){
 	require '../pages/inscription.php'; 
 } elseif ($p === 'deconnexion') { 
 	require '../pages/deconnexion.php';
-} elseif ($p === 'recherche_candidat') {
-	require '../pages/recherche_candidat.php'; 
+} elseif ($p === 'liste_candidat') {
+	require '../pages/liste_candidat.php'; 
 } elseif ($p === 'creation_offre') {
 	//à securiser 
 	require '../pages/creation_offre.php'; 
+} elseif ($p === 'recherche_candidat') {
+	$_GET['q'] = $q; 
+	require '../pages/recherche_candidat.php';
+
 }
+
 
 
 

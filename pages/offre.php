@@ -10,12 +10,14 @@ App\App::setTitle($post->nom);
 
 ?>
 
+<div class="liste_offre">
+	<h1><?= $post->nom; ?> </h1>
 
-<h1><?= $post->nom; ?> </h1>
+	<p><em><?= $post->categorie; ?></em></p>
 
-<p><em><?= $post->categorie; ?></em></p>
+	<p><?= $post->contenu; ?> </p>
 
-<p><?= $post->contenu; ?> </p>
+<div>
 
 
 

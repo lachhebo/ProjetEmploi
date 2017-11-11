@@ -54,6 +54,27 @@ class Offre{
 		}
 	}
 
+	public static function creer_offre($name, $description, $entreprise, $secteur, $adresse){
+
+
+		$mybase = App::getDb(); 
+
+		$mypdo = $mybase->getPDO();
+
+		$req = App::getDb()->getPDO()->prepare('INSERT INTO offres VALUES ');
+
+
+		$sql = "INSERT INTO offres (nom, contenu, entreprise, categorie, adresse, rh_id) VALUES (:name , :description , :entreprise, :secteur, :adresse, :rh)";
+
+
+		$mypdostatement = $mypdo->prepare($sql);
+
+
+
+		$mypdostatement->execute(array('name' => $name, 'description'=>$description, 'entreprise'=>$entreprise, 'secteur'=>$secteur,'adresse'=>$adresse, 'rh'=>$_SESSION['id'])); 
+
+	}
+
 
 	
 	public function getURL(){

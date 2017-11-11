@@ -1,40 +1,30 @@
+<?php 
+
+if(isset($_POST['zone_recherche'])) {
+	header("Location:../public/index.php?p=recherche_candidat&q=".$_POST['zone_recherche']);
+}
+
+?>
 
 
 <div class="liste_offre"> 
 
-
 <div class= "row">
-	<div class="col-xs-8" id="zone_affichage">
+	<div class="col-xs-8" class="liste_offre_1">
 
-		<h1 > Recherche resultat : </h1>
+		<h1 > Candidats : </h1>
+			<?php foreach (App\Table\Personnage::getLast() as $post):
+				 ?> 
 
-		<?php 
-			if(isset($_GET['q']) AND !empty($_GET['q'])) {
-		   		$mot_cle = $_GET["q"] ;  
-		   	}
-	   	?>
+				<h2><a href="<?= $post->getURL() ?>"><?= $post->get_nom(); ?></a> </h2>
+				<p><em><?= $post->get_prenom() ?> </em></p>
+
+
+				<p><?= $post->getExtrait(); ?></p>
+
+			<?php endforeach; ?> 
 	   	
-	   	<?php
-	   	if(isset($_GET['q']) AND !empty($_GET['q'])) {
-	   		$mot_cle = $_GET["q"];
-
-
-	   		foreach (App\Table\Personnage::recherche($mot_cle) as $resultcandidat):
-	   	?> 
-
-			<h2><a href="<?= $resultcandidat->getURL() ?>"><?= $resultcandidat->get_nom(); ?></a> </h2>
-			<p><em><?=  $resultcandidat->get_prenom() ?> </em></p>
-
-
-			<p><?=  $resultcandidat->getExtrait(); ?></p>
-
-		<?php endforeach; };  ?>
-
-   
-	</div>
-
-
-
+ 	</div>
 
 	<div class="col-xs-4" class="list_offre_2">
 		<ul>
@@ -43,10 +33,9 @@
 					<p><span class="glyphicon glyphicon-search"></span> Effectuez une recherche de candidats :</p>
 				</div>
 
-				<form class="form" method="POST" action="" >
-					<div class="form-group">
-
+					<form class="form" method="POST" action="" >
 						<p>Chercher dans :</p>
+
 						<select class="form-control" id="emploi_choix_search">
 							<option>Le nom / prénom du candidat</option>
 							<option>Les compétences techniques du candidat</option>
@@ -95,13 +84,12 @@
 							<option>Transports / Logistique</option>
 						</select>
 
-
-						<button type="button" class="btn btn-default btn-emploi-search"> <span class="glyphicon glyphicon-search"></span> Rechercher</button>
-
-					</div>
+						<button type="submit"  class="btn btn-default btn-emploi-search"> <span class="glyphicon glyphicon-search"></span>Recherche </button>
+					
 				</form>
 		</ul>
 	</div>
+</div> 
 
 </div>
-</div>
+

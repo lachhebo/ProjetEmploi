@@ -35,15 +35,20 @@ if(isset($_POST['zone_recherche'])) {
 					<p><span class="glyphicon glyphicon-search"></span> Effectuez une recherche d'offres :</p>
 			</div>
 			
-				<form class="form" method="POST" action="" >
+					
+
+				<form class="form" method="POST" action="">
+
 					<p>Chercher dans :</p>
 					<select class="form-control" id="emploi_choix_search">
 						<option>L'intitulé de l'offre</option>
 						<option>Le descriptif de l'offre</option>
 						<option>Les qualifications de l'offre</option>
 					</select>
+					
 					<p>les mots :</p>
-					<input type="search" placeholder="Recherche..." name="zone_recherche" />
+
+					<input type="search" class="form-control" placeholder="Recherche..." name="zone_recherche" />
 					
 
 					<div class="divider"></div>
@@ -85,7 +90,7 @@ if(isset($_POST['zone_recherche'])) {
 						<option>Textile / Habillement / Chaussure</option>
 						<option>Transports / Logistique</option>
 					</select>
-					<button type="button" class="btn btn-default btn-emploi-search"> <span class="glyphicon glyphicon-search"></span> Rechercher</button>
+					<button type="submit"  class="btn btn-default btn-emploi-search"> <span class="glyphicon glyphicon-search"></span>Recherche </button>
 				</form>
 		</ul>
 	</div>

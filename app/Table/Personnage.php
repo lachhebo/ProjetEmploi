@@ -20,9 +20,12 @@ class Personnage{
 	private $secteur_activite; 
 
 	private $type;  //0 pour employé et 1 pour RH 
+	private $id; // pour les recherches
+	private $bio; 
+	private $date_inscription; 
 
 
-	public function __construct($nom, $prenom,$motdepasse, $date, $telephone, $email, $adresse, $entreprise= null, $secteur = null){
+	public function __construct($nom, $prenom,$motdepasse, $date, $telephone, $email, $adresse, $entreprise= null, $secteur = null, $id=null, $bio= null){
 		$this->nom = $nom; 
 		$this->prenom = $prenom; 
 		$this->motdepasse = $motdepasse; 
@@ -33,6 +36,9 @@ class Personnage{
 
 		$this->secteur_activite = $secteur; 
 		$this->entreprise = $entreprise; 
+		$this->id = $id; 
+		$this->bio = $bio; 
+		$this->date_inscription = null; 
 
 		if ($secteur !=null or $entreprise !=null) {
 			$this->type = 1;
@@ -42,9 +48,52 @@ class Personnage{
 		}
 	} 
 
-	public static function getLast(){
-		return App::getDb()->query_2("SELECT id, nom, prenom FROM membres WHERE type = 0 ", __CLASS__);	
+
+
+	public static function recherche($requete,$category='None',$niveau='None'){
+
+		if( $category =='None' and $niveau=='None'){
+			return App::getDb()->query2('
+				SELECT * 
+				FROM membres 
+				WHERE nom LIKE "%'.$requete.'%" OR prenom LIKE "%'.$requete.'%" 
+				');
+		}
+
 	}
+
+
+	public function get_nom(){
+		//var_dump($this->nom);
+		return $this->nom;
+	}
+
+
+	public function get_prenom(){
+		//var_dump($this->prenom);
+		return $this->prenom;
+	}
+
+	public function get_bio(){
+		//var_dump($this->bio);
+		return $this->bio;
+	}
+
+	public static function getLast(){
+		return App::getDb()->query2("SELECT id, nom, prenom, bio, telephone, mail, adresse, entreprise, secteur_activite, date_naissance FROM `membres` WHERE type=0 ");	
+	}
+
+	public function getURL(){
+		//var_dump($this->id); 
+		return 'index.php?p=candidat&id=' . $this->id; 
+	}
+
+
+	public function getExtrait(){
+		$html =  '<p>' .  substr($this->bio,0, 500) . '...</p>' ; 
+		$html .= '<p><a href="' .$this->getURL() . '">Voir la suite</a></p>';   
+		return $html; 
+	} 
 
 	public function ajouter_perso_bdd(){
 
@@ -149,6 +198,10 @@ class Personnage{
 			$this->secteur_activite = $verification['secteur_activite'];
 		}
 
+		$this->id = $verification['id'];
+		$this->bio = $verification['bio']; 
+		$this->date_inscription = $verification['date_inscription']; 
+
 	}
 
 
@@ -168,6 +221,9 @@ class Personnage{
 			$_SESSION['secteur_activite'] = $this->secteur_activite; 
 		}
 
+		$_SESSION['id'] = $this->id; 
+		$_SESSION['bio'] = $this->bio; 
+		$_SESSION['date_inscription'] = $this->date_inscription; 
 		
 
 	}
