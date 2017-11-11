@@ -6,6 +6,7 @@ $exp = App\App::getDb()->prepare('SELECT * FROM experience WHERE id_membre = ?',
 $postule = App\App::getDb()->prepare('SELECT * FROM offres WHERE id = (SELECT id_offre FROM postule WHERE id_membre= ?)', [$_SESSION['id']], 'App\Table\Offre');
 
 $myoffer = App\App::getDb()->prepare('SELECT * FROM offres WHERE rh_id = ?', [$_SESSION['id']], 'App\Table\Offre');
+//var_dump($myoffer); 
 
 $candidats_bloque = App\App::getDb()->prepare2('SELECT * FROM `membres` RIGHT JOIN blocage ON (id = id_membre) WHERE id_rh= ? ',[$_SESSION['id']], false); 
 //var_dump($candidats_bloque); 
@@ -48,7 +49,7 @@ if(isset($_POST['name_blocage']) and isset($_POST['firstname_blocage']) and isse
   <button class="tablinksvertical" onclick="openCity(event, 'Modifier mon profil')" id = "tabvertical4">Modifier mon profil</button>
   <?php 
   if($_SESSION['type']==1){?>
-    <button class="tablinksvertical" onclick="openCity(event, 'Mes offres ')" id = "tabvertical5">Mes offres</button>
+    <button class="tablinksvertical" onclick="openCity(event, 'Mes offres')" id = "tabvertical5">Mes offres</button>
     <button class="tablinksvertical" onclick="openCity(event, 'Inscrire RH')" id = "tabvertical6">Inscrire un partenaire</button>
     <button class="tablinksvertical" onclick="openCity(event, 'Securité')" id = "tabvertical7">Securité</button>
   <?php } ?>
@@ -158,6 +159,7 @@ if($_SESSION['type']==1){ ?>
 
       <?php foreach ($myoffer as $tentative): ?> 
         <li>
+
           <h2><a href="<?= $tentative->getURL() ?>"><?= $tentative->nom; ?></a> </h2>
           <p><em><?= $tentative->categorie ?> </em></p>
           <p><?= $tentative->getExtrait(); ?></p>
