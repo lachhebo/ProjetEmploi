@@ -42,6 +42,10 @@ class Personnage{
 		}
 	} 
 
+	public static function getLast(){
+		return App::getDb()->query_2("SELECT id, nom, prenom FROM membres WHERE type = 0 ", __CLASS__);	
+	}
+
 	public function ajouter_perso_bdd(){
 
 		//var_dump(App::getDb()); 

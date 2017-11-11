@@ -38,11 +38,11 @@ p {
 /* Style the tab */
 div.tabvertical {
     float: left;
-    padding-top: 50px;
+    padding-top: 31px;
     border: 1px solid #ccc;
     background-color: #f1f1f1;
     width: 15%;
-    height: 800px;
+    height: 1000px;
 }
 
 /* Style the buttons inside the tab */
@@ -72,12 +72,11 @@ div.tabvertical button.active {
 /* Style the tab content */
 .tabcontentvertical {
     float: left;
-    padding: 0px 12px;
     border: 1px solid #ccc;
     width: 85%;
     border-left: none;
     height: 100%;
-    margin-top: 50px;
+    padding-top: 31px;
 }
 
 /* Style the tab */
@@ -201,7 +200,7 @@ div.tab button.active {
     height: 100%;
 	height:auto;
 	background-color:#F5F5F5;
-	padding-top: 25px;
+	padding-top: 0px;
 }
 
 .coordonnees-poste {
@@ -366,6 +365,14 @@ div.tab button.active {
 	margin-top:2%;
 }
 
+.liste_offre {
+	margin-top: 50px;
+	margin-left: 50px;
+	margin-right: 50px; 
+}
+ 
+
+
 .modal_sign_in{
 	float:right;
 }
@@ -376,6 +383,7 @@ div.tab button.active {
 	float:left;
 	padding:2% 4% 0 4%;
 }
+
 
 .postule-candidat {
 	overflow:auto;
@@ -494,11 +502,10 @@ div.tab button.active {
 }
 
 .parallax-container {
-		padding:50px 80px;
+		padding: 0px 0px;
 }
 
 .parallax-container p {
-		padding: 30px 50px;
 }
 
 .text-left {

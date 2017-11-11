@@ -44,7 +44,7 @@ if(isset($_POST['name']) and isset($_POST['firstname']) and isset($_POST['email'
 
 
 <div class="tab">
-  <button class="tablinks"   id="defaultOpen" onclick="opentab(event, 'Inscription Professionnelle')">Inscription Professionnelle</button>
+  <button class="tablinks" id="defaultOpen" onclick="opentab(event, 'Inscription Professionnelle')">Inscription Professionnelle</button>
   <button class="tablinks" onclick="opentab(event, 'Inscription Ressource Humaine')">Inscription Ressources Humaines</button>
 </div>
 

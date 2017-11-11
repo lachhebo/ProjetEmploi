@@ -7,4 +7,6 @@ $( document ).ready(function(){
           $(".rh_only").removeClass("invisible").addClass("visible");
 		  $(".candidat_only").removeClass("visible").addClass("invisible");
     });
+
+
 });

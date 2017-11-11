@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="page_profil">
 
 <div class="tabvertical" >
   <button class="tablinksvertical" onclick="openCity(event, 'Mon Profil')" id="defaultOpen">Mon Profil</button>

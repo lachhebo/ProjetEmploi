@@ -1,8 +1,30 @@
-<div class="container-fluid">
-	<div class="panel-group row">
-		<div class="panel-left col-xs-3">
-			<div class="panel-container">
+<?php 
 
+if(isset($_POST['zone_recherche'])) {
+	header("Location:../public/index.php?p=recherche&q=".$_POST['zone_recherche']);
+}
+
+?>
+
+
+<div class="liste_offre"> 
+
+<div class= "row">
+	<div class="col-xs-8" class="liste_offre_1">
+
+		<h1 > Candidats : </h1>
+
+			<?php foreach (App\Table\Personnage::getLast() as $post):
+				 ?> 
+
+			<?php endforeach; ?> 
+	   	
+   
+	</div>
+
+	<div class="col-xs-4" class="list_offre_2">
+		<ul>
+			
 				<div class="div-header">
 					<p><span class="glyphicon glyphicon-search"></span> Effectuez une recherche de candidats :</p>
 				</div>
@@ -64,123 +86,9 @@
 
 					</div>
 				</form>
-			</div>
-		</div>
-
-		<div class="panel-center col-xs-9">
-			<div class="panel-container">
-				<p class="header-text">Résultat de la recherche :</p>
-				<div class="panel-job-element">
-					<div class="panel-job-element-left">
-						<div class="intitule-poste">
-							<p>Gérard Bouvier</p>
-						</div>
-						<div class="coordonnees-poste">
-							<p class="text-left">Homme</p>
-							<p class="text-right">32 ans</p>
-						</div>
-						<div class="competences-exigees">
-							<p>Compétences :<br />Bac en science économique, plusieurs CDD de 2 à 8 mois effectués</p>
-						</div>
-						<p class="descriptif-candidat fade-text">Titulaire d'un baccalauréat en science économique, je n'ai pas réussi à trouver, à la sortie du lycée,
-							un travail stable. J'enchaine depuis quelques années maintenant des CDD durant quelques mois, ce qui m'a permis de me forger une expérience
-							professionnelle très vaste. Mes compétences en matière de gestion ont été mises à profit plus d'une fois, et je pense pouvoir apporter une
-						véritable plus-value à votre entreprise.</p>
-					</div>
-					<div class="panel-job-element-right">
-						<button type="button" class="btn btn-default btn-circle"> <span class="glyphicon glyphicon-plus"></span></button>
-					</div>
-				</div>
-
-				<div class="panel-job-element">
-					<div class="panel-job-element-left">
-						<div class="intitule-poste">
-							<p>Gérard Bouvier</p>
-						</div>
-						<div class="coordonnees-poste">
-							<p class="text-left">Homme</p>
-							<p class="text-right">32 ans</p>
-						</div>
-						<div class="competences-exigees">
-							<p>Compétences :<br />Bac en science économique, plusieurs CDD de 2 à 8 mois effectués</p>
-						</div>
-						<p class="descriptif-candidat fade-text">Titulaire d'un baccalauréat en science économique, je n'ai pas réussi à trouver, à la sortie du lycée,
-							un travail stable. J'enchaine depuis quelques années maintenant des CDD durant quelques mois, ce qui m'a permis de me forger une expérience
-							professionnelle très vaste. Mes compétences en matière de gestion ont été mises à profit plus d'une fois, et je pense pouvoir apporter une
-						véritable plus-value à votre entreprise.</p>
-					</div>
-					<div class="panel-job-element-right">
-						<button type="button" class="btn btn-default btn-circle"> <span class="glyphicon glyphicon-plus"></span></button>
-					</div>
-				</div>
-
-				<div class="panel-job-element">
-					<div class="panel-job-element-left">
-						<div class="intitule-poste">
-							<p>Gérard Bouvier</p>
-						</div>
-						<div class="coordonnees-poste">
-							<p class="text-left">Homme</p>
-							<p class="text-right">32 ans</p>
-						</div>
-						<div class="competences-exigees">
-							<p>Compétences :<br />Bac en science économique, plusieurs CDD de 2 à 8 mois effectués</p>
-						</div>
-						<p class="descriptif-candidat fade-text">Titulaire d'un baccalauréat en science économique, je n'ai pas réussi à trouver, à la sortie du lycée,
-							un travail stable. J'enchaine depuis quelques années maintenant des CDD durant quelques mois, ce qui m'a permis de me forger une expérience
-							professionnelle très vaste. Mes compétences en matière de gestion ont été mises à profit plus d'une fois, et je pense pouvoir apporter une
-						véritable plus-value à votre entreprise.</p>
-					</div>
-					<div class="panel-job-element-right">
-						<button type="button" class="btn btn-default btn-circle"> <span class="glyphicon glyphicon-plus"></span></button>
-					</div>
-				</div>
-
-				<div class="panel-job-element">
-					<div class="panel-job-element-left">
-						<div class="intitule-poste">
-							<p>Gérard Bouvier</p>
-						</div>
-						<div class="coordonnees-poste">
-							<p class="text-left">Homme</p>
-							<p class="text-right">32 ans</p>
-						</div>
-						<div class="competences-exigees">
-							<p>Compétences :<br />Bac en science économique, plusieurs CDD de 2 à 8 mois effectués</p>
-						</div>
-						<p class="descriptif-candidat fade-text">Titulaire d'un baccalauréat en science économique, je n'ai pas réussi à trouver, à la sortie du lycée,
-							un travail stable. J'enchaine depuis quelques années maintenant des CDD durant quelques mois, ce qui m'a permis de me forger une expérience
-							professionnelle très vaste. Mes compétences en matière de gestion ont été mises à profit plus d'une fois, et je pense pouvoir apporter une
-						véritable plus-value à votre entreprise.</p>
-					</div>
-					<div class="panel-job-element-right">
-						<button type="button" class="btn btn-default btn-circle"> <span class="glyphicon glyphicon-plus"></span></button>
-					</div>
-				</div>
-
-				<div class="panel-job-element">
-					<div class="panel-job-element-left">
-						<div class="intitule-poste">
-							<p>Gérard Bouvier</p>
-						</div>
-						<div class="coordonnees-poste">
-							<p class="text-left">Homme</p>
-							<p class="text-right">32 ans</p>
-						</div>
-						<div class="competences-exigees">
-							<p>Compétences :<br />Bac en science économique, plusieurs CDD de 2 à 8 mois effectués</p>
-						</div>
-						<p class="descriptif-candidat fade-text">Titulaire d'un baccalauréat en science économique, je n'ai pas réussi à trouver, à la sortie du lycée,
-							un travail stable. J'enchaine depuis quelques années maintenant des CDD durant quelques mois, ce qui m'a permis de me forger une expérience
-							professionnelle très vaste. Mes compétences en matière de gestion ont été mises à profit plus d'une fois, et je pense pouvoir apporter une
-						véritable plus-value à votre entreprise.</p>
-					</div>
-					<div class="panel-job-element-right">
-						<button type="button" class="btn btn-default btn-circle"> <span class="glyphicon glyphicon-plus"></span></button>
-					</div>
-				</div>
-
-			</div>
-		</div>
+		</ul>
 	</div>
+</div> 
+
 </div>
+

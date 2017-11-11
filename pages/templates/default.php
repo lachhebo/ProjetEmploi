@@ -1,13 +1,13 @@
-<?php 
+<?php
 if(isset($_POST['identififiant']) and isset($_POST['password'])) {
 	$initie = new App\Table\Personnage(null, null,$_POST["password"],null,null, $_POST['identififiant'],null);
-	$test = $initie->connexion(); 
+	$test = $initie->connexion();
 	if($test==1){
-		unset($initie); 
+		unset($initie);
 	}
 	else{
-		$initie->recuperer_donnee(); 
-		$initie->session(); 
+		$initie->recuperer_donnee();
+		$initie->session();
 	}
 }
 
@@ -24,7 +24,7 @@ if(isset($_POST['identififiant']) and isset($_POST['password'])) {
 			<meta name="description">
 			<meta name="author">
 			<link rel="icon" href="../../favicon.ico">
-		
+
 			<link rel="stylesheet" href="./css/projet_emploi.css" />
 
 			<meta name="viewport" contents="width=device-width, initial-scale=1">
@@ -35,17 +35,16 @@ if(isset($_POST['identififiant']) and isset($_POST['password'])) {
 
 			<title><?= App\App::getTitle(); ?> </title>
 
-			<script src = "js\script_recherche.js"  type="text/javascript"></script>
-			<!--<script src = "js\connect_as.js"  type="text/javascript"></script> -->
+			<script src = "js\connect_as.js"  type="text/javascript"></script> 
 			<script src = "js\show_full_offer.js"  type="text/javascript"></script>
-			<!--<script src = "js\sign_in.js"  type="text/javascript"></script> -->
+			<script src = "js\sign_in.js"  type="text/javascript"></script> -->
 			<script src = "js\script_tabulation.js"  type="text/javascript"></script>
 	</head>
 	<body>
 
 		<!--Début du menu-->
 		<nav class="navbar navbar-inverse  navbar-fixed-top"  role="navigation" >
-															 
+
 								 <div class="container">
 						<div class="navbar-header">
 								<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -54,7 +53,7 @@ if(isset($_POST['identififiant']) and isset($_POST['password'])) {
 										<span class="icon-bar"></span>
 										<span class="icon-bar"></span>
 								</button>
-						 
+
 						</div>
 						<div id="navbar" class="navbar-collapse collapse">
 								<ul class="nav navbar-nav">
@@ -70,13 +69,13 @@ if(isset($_POST['identififiant']) and isset($_POST['password'])) {
 									<?php if(isset($_SESSION['email']) and isset($_SESSION['entreprise']) ){  ?>
 										<li><a href= "index.php?p=recherche_candidat">Recherche candidat</a></li>
 										<li><a href= "index.php?p=creation_offre">Créer une offre</a></li>
-										
+
 									<?php } ?>
-										
-										
-		
+
+
+
 								</ul>
-							
+
 							 <ul class="nav navbar-nav navbar-right">
 							 		<?php if(!isset($_SESSION['email'])){ ?>
 									 	<li><a data-toggle="modal" data-target="#loginModal">login  <span class="glyphicon glyphicon-log-in"></span></a></li>
@@ -84,18 +83,18 @@ if(isset($_POST['identififiant']) and isset($_POST['password'])) {
 									 else{ ?>
 									 	<li><a href="index.php?p=deconnexion">Deconnexion  <span class="glyphicon glyphicon-log-out"></span></a></li>
 
-									 <?php } ?> 
+									 <?php } ?>
 
-									 
+
 							</ul>
-																						
-			 
+
+
 						</div>
 				</div>
 	 </nav>
 
 	 <?php if(!isset($_SESSION['email'])){ ?>
-		
+
 		<div id="loginModal" class="modal fade" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -132,15 +131,15 @@ if(isset($_POST['identififiant']) and isset($_POST['password'])) {
 	</div>
 </div>
 
-	<?php } ?> 
+	<?php } ?>
 
 
-		<!-- FIN DU MENU : 
+		<!-- FIN DU MENU :
 
-		--> 
+		-->
 
-		<div class ="starter-template" style="padding-top: 100px; padding-right: 50px; padding-left: 50px; padding-bottom: 300px;  ">
-			<?= $content; ?> 
+		<div class ="starter-template" >
+			<?= $content; ?>
 		</div>
 
 <!--  <footer class="footer-distributed">

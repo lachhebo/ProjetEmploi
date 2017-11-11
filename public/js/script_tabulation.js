@@ -1,9 +1,11 @@
 window.onload=function(){
-    document.getElementById("defaultOpen").click();
+    console.log("test");
+   var test = document.getElementById("defaultOpen");
 
-   //var tab1 = document.getElementById("defaultOpen"); 
-   //el.addEventListener('click', recherche);
-} 
+   if (test != null){
+    test.click(); 
+   }
+}
 
 
 function opentab(evt, Formulaire) {
@@ -49,5 +51,3 @@ function openCity(evt, cityName) {
     document.getElementById(cityName).style.display = "block";
     evt.currentTarget.className += " active";
 }
-
-
