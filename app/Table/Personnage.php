@@ -48,7 +48,36 @@ class Personnage{
 		}
 	} 
 
+	public function blacklister($rh){
+		$mybase = App::getDb(); 
 
+		$mypdo = $mybase->getPDO();
+
+
+		$sql =  'SELECT * FROM membres WHERE mail = ?';
+
+
+		$mypdostatement = $mypdo->prepare($sql);
+		$mypdostatement->execute(array($this->email));
+		$verification = $mypdostatement->fetch();
+
+
+		if ($verification != null){
+
+			$this->id = $verification['id']; 
+
+			$sql = "INSERT INTO blocage (id_rh, id_membre) VALUES( :rh , :black)";
+
+
+			$mypdostatement = $mypdo->prepare($sql); 
+
+
+			$mypdostatement->execute(array('black' => $this->id, 'rh'=>$rh));
+
+
+		}
+
+	}
 
 	public static function recherche($requete,$category='None',$niveau='None'){
 
@@ -203,6 +232,8 @@ class Personnage{
 		$this->date_inscription = $verification['date_inscription']; 
 
 	}
+
+
 
 
 	public function session(){

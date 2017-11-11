@@ -35,8 +35,6 @@ if(isset($_POST['name']) and isset($_POST['firstname']) and isset($_POST['email'
           }
        
         }
-        else{ ?><h3> Veuillez completez les espaces reservés à votre nom, prénom, mot de passe et adresse mail <h3>  <?php 
-        }
 }
 
 ?>

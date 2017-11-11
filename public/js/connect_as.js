@@ -1,4 +1,4 @@
-$( document ).ready(function(){
+/*$( document ).ready(function(){
     $('#candidat_connect').on( "click", function(event) {
           $(".candidat_only").removeClass("invisible").addClass("visible");
 		  $(".rh_only").removeClass("visible").addClass("invisible");
@@ -10,3 +10,5 @@ $( document ).ready(function(){
 
 
 });
+
+*/

@@ -23,6 +23,11 @@ class Database{
 
 	public function getPDO(){
 		if ($this->pdo === null) {
+			//var_dump($this->db_host); 
+			//var_dump($this->db_name);
+			//var_dump($this->db_user);
+			//var_dump($this->db_pass);
+
 			$pdo = new PDO('mysql:host=localhost;dbname=espace_membre;charset=utf8', 'root', '1234azer');
 			$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			$this->pdo = $pdo;
@@ -38,18 +43,25 @@ class Database{
 		return $datas;
 	}
 
-	public function query2($statement){
+	public function query2($statement, $one= false){
 		$req = $this->getPDO()->query($statement);
 		$datas = $req->fetchAll();
 		//var_dump($datas); 
-		$resultat = array();
-		foreach ($datas as $post): 
-			
+		if($one){
+
+		}
+		else{
+			$resultat = array();
+			foreach ($datas as $post): 
+		
 			$mon_perso = new \App\Table\Personnage($post['nom'],$post['prenom'], null, $post['date_naissance'],$post['telephone'],$post['mail'], $post['adresse'], $post['entreprise'], $post['secteur_activite'],$post['id'],$post['bio']);  
 
 			$resultat[$post['id']] = $mon_perso;
-		endforeach;
+			endforeach;
 		return $resultat;
+
+		}
+
 	}
 
 
@@ -69,19 +81,28 @@ class Database{
 	}
 
 
-	public function prepare2($statement, $attributes){
+	public function prepare2($statement, $attributes, $one = true){
 		$req = $this->getPDO()->prepare($statement);
 		$req->execute($attributes);
-		$datas = $req->fetch();
-		//var_dump($datas); 
-			
-		$mon_perso = new \App\Table\Personnage($datas['nom'],$datas['prenom'], null, $datas['date_naissance'],$datas['telephone'],$datas['mail'], $datas['adresse'], $datas['entreprise'], $datas['secteur_activite'],$datas['id'],$datas['bio']);  
+		if($one){
+			$datas = $req->fetch();
+			//var_dump($datas); 
+			$mon_perso = new \App\Table\Personnage($datas['nom'],$datas['prenom'], null, $datas['date_naissance'],$datas['telephone'],$datas['mail'], $datas['adresse'], $datas['entreprise'], $datas['secteur_activite'],$datas['id'],$datas['bio']); 
+			return $mon_perso; 
+			//var_dump($mon_perso); 
+		}
+		else{
+			$datas = $req->fetchAll();
+			$resultat = array();
+			//var_dump($datas); 
+			foreach ($datas as $key ):
+				$mon_perso = new \App\Table\Personnage($key['nom'],$key['prenom'], null, $key['date_naissance'],$key['telephone'],$key['mail'], $key['adresse'], $key['entreprise'], $key['secteur_activite'],$key['id'],$key['bio']);  
+				$resultat[$key['id']] = $mon_perso;
+				//var_dump($mon_perso); 
+			endforeach;
 
-		//var_dump($mon_perso); 
-
-		return $mon_perso;
-
-		
+			return $resultat;
+		}
 	}
 
 }

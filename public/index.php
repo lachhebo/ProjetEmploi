@@ -51,7 +51,8 @@ if($p === 'home'){
 } elseif ($p === 'recherche_candidat') {
 	$_GET['q'] = $q; 
 	require '../pages/recherche_candidat.php';
-
+} elseif ($p === 'messagerie') {
+	require '../pages/messagerie.php'; 
 }
 
 
