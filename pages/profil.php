@@ -3,7 +3,7 @@ $post = App\App::getDb()->prepare('SELECT nom, date_obtention, ecole FROM diplom
 
 $exp = App\App::getDb()->prepare('SELECT * FROM experience WHERE id_membre = ?', [$_SESSION['id']], 'App\Table\Experience'); 
 
-$postule = App\App::getDb()->prepare('SELECT * FROM offres WHERE id = (SELECT id_offre FROM postule WHERE id_membre= ?)', [$_SESSION['id']], 'App\Table\Offre');
+$postule = App\App::getDb()->prepare('SELECT * FROM offres WHERE id IN (SELECT id_offre FROM postule WHERE id_membre= ?)', [$_SESSION['id']], 'App\Table\Offre');
 
 $myoffer = App\App::getDb()->prepare('SELECT * FROM offres WHERE rh_id = ?', [$_SESSION['id']], 'App\Table\Offre');
 //var_dump($myoffer); 
@@ -34,8 +34,12 @@ if(isset($_POST['name_blocage']) and isset($_POST['firstname_blocage']) and isse
   $vire->blacklister($_SESSION['id']);  
 }
 
+if(isset($_POST['diplome']) and $_POST['diplome']!=null){
+  App\Table\diplome::ajouter($_POST['diplome'],$_POST['ecole'], $_POST['date_obtention']); 
+}
 
-//var_dump($post);  var_dump($_SESSION['id']);
+App\App::getDb()->modification_personnage();
+
 ?>
 
 
@@ -86,23 +90,37 @@ if(isset($_POST['name_blocage']) and isset($_POST['firstname_blocage']) and isse
 </div>
 
 <div id="Compétence" class="tabcontentvertical">
-   <div class = "presentation" >
-
-  <h1><b>Diplôme</b> </h1>
-    <ul class="liste_diplome">
-
-      <?php foreach ($post as $diplome):
-         ?> 
-      <li>
-        <h2><?= $diplome->nom; ?></a></h2>
-        <p><em><?= $diplome->date_obtention ?> </em></p>
-        <p><b><em><?= $diplome->ecole; ?></em></b></p>
-
-      </li>
-      <?php endforeach; ?> 
-
-
-    </ul>
+  <div class = "presentation">
+    <div class="col-xs-8 " style="display: fixed" ></div>
+      <h1><b>Diplôme</b> </h1>
+      <ul class="liste_diplome">
+          <?php foreach ($post as $diplome): ?> 
+            <li>
+              <h2><?= $diplome->nom; ?></a></h2>
+              <p><em><?= $diplome->date_obtention ?> </em></p>
+              <p><b><em><?= $diplome->ecole; ?></em></b></p>
+            </li>
+          <?php endforeach; ?> 
+      </ul>
+    </div>
+    <div class ="col-xs-4">
+      <h1><b>Ajouter un Diplôme</b> </h1>
+      <form method="POST" action="">
+        <div class="form-group">
+          <label for="diplome">Diplome</label>
+          <input type="text" class="form-control" name = "diplome" placeholder="Votre diplôme">
+        </div>
+        <div class="form-group">
+          <label for="date_obtention">date</label>
+          <input type="date" class="form-control" name = "date_obtention" placeholder="Date d'obtention">
+        </div>
+        <div class="form-group">
+          <label for="date_obtention">Ecole</label>
+          <input type="text" class="form-control" name = "ecole" placeholder="Date d'obtention">
+        </div>
+        <button type="submit" class="btn btn-primary">Envoyer</button>
+      </form>
+    </div>
   </div>
 </div>
 
@@ -140,29 +158,130 @@ if(isset($_POST['name_blocage']) and isset($_POST['firstname_blocage']) and isse
       <?php endforeach; ?> 
     </ul>
   </div>
-  
 </div>
 
 
 <div id="Modifier mon profil" class="tabcontentvertical">
-<!-- on verra ça à la fin -->
+
+  <div class = "presentation" >
+  <?php if($_SESSION['type']==0){ ?>
+
+    <form class="form" method="POST" action="" >
+              <div class="form-group">
+                <label for="name">Nom :</label>
+                <input type="text" id="modification_name" class="form-control" placeholder="modification_Nom" name="modification_name">
+              </div>
+              <div class="form-group">
+                <label for="firstname">Prénom: </label>
+                <input type="text" id="modification_firstname" class="form-control" name="modification_firstname" placeholder="Prénom">
+              </div>
+              <div class="form-group">
+                <label for="mdp">Mot de passe: </label>
+                <input type="password" id="modification_mdp" class="form-control" name="modification_mdp" placeholder="Mot de passe">
+              </div>
+              <div class="form-group">
+                <label for="date">Date de naissance: </label>
+                <input type="date" name="modification_date" class="form-group" id="modification_date" placeholder="Ex : 07/11/1985">
+              </div>
+              <div class="form-group">
+                <label for="tel">Téléphone: </label>
+                <input type="tel" id="modification_tel" class="form-control" name="modification_tel" placeholder="Téléphone">
+              </div>
+              <div class="form-group">
+                <label for="email">Email: </label>
+                <input type="text" id="modification_email" class="form-control" name="modification_email" placeholder="Mail">
+              </div>
+              <div class="form-group">
+                <label for="adres">Adresse: </label>
+                <input type="text" id="modification_adres" class="form-control" name="modification_adres" placeholder="Adresse postale">
+              </div>
+              <div class="form-group">
+                <label for="bio">Bio: </label>
+                <input type="text"  class="form-control" name="modification_bio" placeholder="Ma bio">
+              </div>
+      <button type="connexion" class="btn btn-default" id="inscription_btn_pro">Confirmer les modifications</button>
+  <?php } else { ?>
+        <form form class="form" method="POST" action="">
+            <div class="form-group">
+              <label for="name">Nom</label>
+              <input name = "modification_name" type="text" id="name" class="form-control" placeholder="Nom">
+            </div>
+            <div class="form-group">
+              <label for="firstname">Prénom</label>
+              <input type="text" name = "modification_firstname" id="name" class="form-control" placeholder="Prénom">
+            </div>
+            <div class="form-group">
+              <label for="mdp">Mot de passe</label>
+              <input type="text" id="mdp" name="modification_mdp" class="form-control" placeholder="Mot de passe">
+            </div>
+            <div class="form-group">
+              <label for="Ent">Entreprise</label>
+              <input type="Comment" id="ent" name="modification_ent" class="form-control" placeholder="L'entreprise pour laquelle vous travaillez en tant que RH">
+            </div>
+            <div class="form-group">
+              <label for="SA">Secteur d'actvité</label>
+              <input type="text" id="sa" name = "modification_sa" class="form-control" placeholder="Votre secteur d'activité">
+            </div>
+            <div class="form-group">
+              <label for="tel">Téléphone</label>
+              <input type="tel" id="tel" class="form-control" name="modification_tel" placeholder="Téléphone professionnel">
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="text" id="Email" name = "modification_email" class="form-control" placeholder="Mail d'entreprise ou personnel">
+            </div>
+            <div class="form-group">
+                <label for="date">Date de naissance: </label>
+                <input type="date" name="modification_date" class="form-group" id="date" placeholder="Ex : 07/11/1985">
+              </div>
+            <div class="form-group">
+              <label for="adresse">Adresse</label>
+              <input type="text" id=adr name= "modification_adres" class="form-control" placeholder="Votre adresse">
+            </div>
+            <div class="form-group">
+                <label for="bio">Bio: </label>
+                <input type="text"  class="form-control" name="modification_bio" placeholder="Ma bio">
+              </div>
+            <button type="connexion" class="btn btn-default" id= "inscription_btn_rh">Confirmer les modifications</button>
+        </form>
+
+
+    <?php } ?>
+
+    </div>
 </div>
 
 <?php 
+
 if($_SESSION['type']==1){ ?>
 
 <div id="Mes offres" class="tabcontentvertical">
   <div class = "presentation" >
 
-  <h1><b>Offres Postulés </b> </h1>
+  <h1><b>Offres Postés sur le site  </b> </h1>
     <ul class="liste_diplome">
 
       <?php foreach ($myoffer as $tentative): ?> 
         <li>
 
+          
           <h2><a href="<?= $tentative->getURL() ?>"><?= $tentative->nom; ?></a> </h2>
-          <p><em><?= $tentative->categorie ?> </em></p>
-          <p><?= $tentative->getExtrait(); ?></p>
+          <h3>Les candidats sont :</h3>
+
+          <ul class="liste_diplome">
+              <?php 
+
+            $candidat_postulant=App\App::getDb()->prepare2('SELECT * FROM `membres` RIGHT JOIN postule ON (id = id_membre) WHERE id_offre= :offer AND id = :member',['member' =>$_SESSION['id'], 'offer' =>$tentative->id ], false); 
+
+              foreach ($candidat_postulant as $postulant): ?>
+
+                    <li>
+                      <form <form method="POST" action=""></form>
+                        <p><a href="<?= $postulant->getURL() ?>"><?= $postulant->get_full_nom(); ?></a></p>
+                    </li>              
+          
+              <?php endforeach; ?>
+          </ul>
         </li>
       <?php endforeach; ?> 
     </ul>
@@ -248,8 +367,6 @@ if($_SESSION['type']==1){ ?>
   </div>
 </div>
 
-
-
 <div id="Securité" class="tabcontentvertical">
   <div class = "presentation" >
     <h1><b> Candidat bloqué :  </b> </h1>
@@ -284,9 +401,6 @@ if($_SESSION['type']==1){ ?>
   </div>
 </div>
 
-
-
 <?php } ?>
-
-      
+ 
 </div>

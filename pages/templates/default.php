@@ -63,9 +63,9 @@ if(isset($_POST['identififiant']) and isset($_POST['password'])) {
 									<?php if(isset($_SESSION['email'])){  ?>
 										<li><a href= "index.php?p=profil">Profils</a></li>
 									<?php } ?>
-
+									<?php if(isset($_SESSION['email'])){  ?>
 										<li><a href=index.php?p=messagerie> Messagerie</a></li>
-
+									<?php } ?>
 									<?php if(isset($_SESSION['email']) and isset($_SESSION['entreprise']) ){  ?>
 										<li><a href= "index.php?p=liste_candidat">Recherche candidat</a></li>
 										<li><a href= "index.php?p=creation_offre">Créer une offre</a></li>

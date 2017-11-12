@@ -103,9 +103,30 @@ class Personnage{
 		return $this->prenom;
 	}
 
+	public function get_full_nom(){
+		//var_dump($this->prenom);
+		return "$this->nom "."$this->prenom";
+	}
+
 	public function get_bio(){
 		//var_dump($this->bio);
 		return $this->bio;
+	}
+
+	public function get_mail(){
+		return $this->email; 
+	}
+
+	public function get_adresse(){
+		return $this->adresse; 
+	}
+
+	public function get_telephone(){
+		return $this->telephone; 
+	}
+
+	public function get_date_de_naissance(){
+		return $this->date_naissance; 
 	}
 
 	public static function getLast(){
@@ -126,18 +147,9 @@ class Personnage{
 
 	public function ajouter_perso_bdd(){
 
-		//var_dump(App::getDb()); 
-
 		$mybase = App::getDb(); 
 
 		$mypdo = $mybase->getPDO();
-
-		//var_dump($mypdo); 
-		//var_dump($mybase); 
-		//var_dump($this->email); 
-
-
-		//
 
 		if($this->date_naissance ==""){
 			$this->date_naissance = null; 
