@@ -37,7 +37,8 @@ if(isset($_POST['identififiant']) and isset($_POST['password'])) {
 
 			<script src = "js\connect_as.js"  type="text/javascript"></script> 
 			<script src = "js\show_full_offer.js"  type="text/javascript"></script>
-			<script src = "js\sign_in.js"  type="text/javascript"></script> -->
+			<script type="text/javascript" src="js\date.js" ></script>
+			<script src = "js\sign_in.js"  type="text/javascript"></script> 
 			<script src = "js\script_tabulation.js"  type="text/javascript"></script>
 	</head>
 	<body>

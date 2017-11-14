@@ -29,6 +29,9 @@ class Personnage{
 		$this->nom = $nom; 
 		$this->prenom = $prenom; 
 		$this->motdepasse = $motdepasse; 
+		//var_dump($date);
+		//$date_form = date_create_from_format('j/M/Y', $date);
+		//var_dump($date_form);
 		$this->date_naissance = $date; 
 		$this->telephone = $telephone; 
 		$this->email = $email; 
@@ -40,7 +43,7 @@ class Personnage{
 		$this->bio = $bio; 
 		$this->date_inscription = null; 
 
-		if ($secteur !=null or $entreprise !=null) {
+		if ($secteur !=null) {
 			$this->type = 1;
 		}
 		else{
@@ -145,18 +148,76 @@ class Personnage{
 		return $html; 
 	} 
 
+
+	public function verifier_data(){
+
+		if($this->nom == ""){
+			echo 'mauvais nom';
+			return 1; 
+		}
+
+		if($this->prenom == ""){
+			echo 'mauvais prenom';
+			return 1; 
+		} 
+
+		if($this->motdepasse == ""){
+			echo 'mauvais nom';
+			return 1; 
+		}
+		elseif(strlen($this->motdepasse)<=4) {
+			echo 'mauvais mdp';
+			return 1;
+		}
+
+		if ($this->date_naissance == "") {
+			$this->date_naissance = null; 
+		}
+		else{
+			$test_date = explode('-', $this->date_naissance);
+			if(count($test_date)!=3){
+				echo "date";
+				return 1; 
+			}
+			//var_dump(is_numeric($test_date)==FALSE);
+			elseif(is_numeric($test_date[0])==FALSE or is_numeric($test_date[1])==FALSE or is_numeric($test_date[2])==FALSE){
+				echo "date2";
+				return 1; 
+			}
+			elseif(checkdate($test_date[1], $test_date[2], $test_date[0])!=TRUE){
+				echo 'mauvais date';
+				return 1; 
+				//On ne vérifie pas les cas spéciaux 
+			} 
+		}
+		
+
+		if($this->telephone ==""){
+			$this->telephone = null; 
+		}
+		elseif(!is_numeric($this->telephone)){
+			echo 'mauvais tel';
+			return 1; 
+		} 
+
+		if(strpos($this->email,'@') == FALSE ){
+			echo 'mauvais email @';
+			return 1; 
+		} 
+		elseif (strpos($this->email,'.') == FALSE ) {
+			echo 'mauvais email .';
+			return 1; 
+		}
+
+
+	}
+
 	public function ajouter_perso_bdd(){
 
 		$mybase = App::getDb(); 
 
 		$mypdo = $mybase->getPDO();
 
-		if($this->date_naissance ==""){
-			$this->date_naissance = null; 
-		}
-		if($this->telephone ==""){
-			$this->telephone = null; 
-		}
 
 		$sql =  'SELECT * FROM membres WHERE mail = ?';
 

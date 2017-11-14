@@ -9,6 +9,12 @@ if ($post === false){
 	App::notfound(); 
 }
 
+
+
+if(isset($_POST['message'])){
+	App\Table\Message::envoyer($_POST['message'],$_GET['id']); 
+}
+
 App\App::setTitle($post->get_nom()); 
 
 
@@ -70,21 +76,43 @@ App\App::setTitle($post->get_nom());
 
 	<div class="col-xs-4">
 
-		<h1><b>Contact : </b></h1>
+		<div>
 
-		<ul class="liste_diplome">
+			<h1><b>Contact : </b></h1>
 
-
-			<li><p> <b> Télephone : </b><?= $post->get_telephone(); ?></p></li>
-
-			<li><p> <b> Email : </b> <?= $post->get_mail(); ?></p></li>
-
-			<li><p> <b> Adresse : </b> <?= $post->get_adresse(); ?></p></li>
+			<ul class="liste_diplome">
 
 
-		</ul>
+				<li><p> <b> Télephone : </b><?= $post->get_telephone(); ?></p></li>
+
+				<li><p> <b> Email : </b> <?= $post->get_mail(); ?></p></li>
+
+				<li><p> <b> Adresse : </b> <?= $post->get_adresse(); ?></p></li>
+
+
+			</ul>
+
+		</div>
+
+		<div>
+
+		<h1><b>Message : </b></h1>
+
+		<div class="liste_diplome" >
+
+			<form method="POST" action="">
+				<div class="form-group">
+					<input type="text" class="form-control" name = "message" placeholder="Votre message">
+				</div>
+				<button type="submit" class="btn btn-primary">Envoyer</button>
+			</form>
+
+		</div>
+
+		</div>
 		
 	</div>
+
 
 
 	

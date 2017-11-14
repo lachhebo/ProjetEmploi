@@ -28,6 +28,7 @@ p {
     transition: background-color .3s;
 }
 
+
 .pagination a.active {
     background-color: #4CAF50;
     color: white;
@@ -512,6 +513,9 @@ div.tab button.active {
 .parallax-container p {
 }
 
+.page_profil {
+	padding-top: 10px ;
+}
 
 .presentation {
 	padding: 10px ;

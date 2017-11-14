@@ -14,7 +14,7 @@ $blocage = false;
 if (isset($_SESSION['id'])) {
 	$post_postulation = App\App::getDb()->prepare('SELECT * FROM postule WHERE id_offre = :offer  and id_membre = :member', [ 'offer' => $_GET['id'], 'member' => $_SESSION['id'] ], 'App\Table\Postule');
 
-	$candidats_bloque = App\App::getDb()->prepare2('SELECT * FROM `blocage` WHERE (id_membre = :id_membre) and  id_rh :id_rh = ? ',['id_membre' => $_SESSION['id'], 'id_rh' =>$post->rh_id], true);
+	$candidats_bloque = App\App::getDb()->prepare2('SELECT * FROM `blocage` WHERE (id_membre = :id_membre) and  id_rh = :id_rh ',['id_membre' => $_SESSION['id'], 'id_rh' =>$post->rh_id], true);
 
 	if($candidats_bloque == null){
 		$blocage = false;
@@ -40,6 +40,7 @@ if(isset($_POST['postule'])){
 
 ?>
 
+<div class = "liste_offre">
 
 <div class="col-xs-8">
 
@@ -106,6 +107,9 @@ if(isset($_POST['postule'])){
 
 	</div>
 
+
+
+</div>
 
 
 </div>

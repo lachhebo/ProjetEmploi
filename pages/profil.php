@@ -14,16 +14,29 @@ $candidats_bloque = App\App::getDb()->prepare2('SELECT * FROM `membres` RIGHT JO
 if(isset($_POST['name']) and isset($_POST['firstname']) and isset($_POST['email']) and isset($_POST['mdp']) ) {
   if($_POST['name']!="" and $_POST['firstname']!="" and $_POST['email']!="" and $_POST['mdp']!=""){
 
-    if (!isset($_POST['ent']) and !isset($_POST['sa'])  ) {
+    if (!isset($_POST['sa'])  ) {
       $initie = new App\Table\Personnage($_POST['name'],$_POST['firstname'],$_POST['mdp'],$_POST['date'],$_POST['tel'],$_POST['email'],$_POST['adres']);
-      //var_dump($initie); 
-      $possible = $initie->ajouter_perso_bdd();
+      if($initie->verifier_data() == 1){
+      echo 'mauvaise data'; 
+      }
+      elseif ($initie->ajouter_perso_bdd() == 0 ) {
+        echo 'candidat ajouté'; 
+      }
+      else{
+      echo 'candidat déjà inscrit'; 
+      }
     }
-
-    elseif($_POST['ent']!="" or $_POST['sa']!="" ) {
-      $initie = new App\Table\Personnage($_POST['name'],$_POST['firstname'],$_POST['mdp'],$_POST['date'],$_POST['tel'],$_POST['email'],$_POST['adres'], $_POST['ent'], $_POST['sa']);
-      //var_dump($initie); 
-      $possible = $initie->ajouter_perso_bdd();
+    elseif($_POST['sa']!="" ) {
+      $initie = new App\Table\Personnage($_POST['name'],$_POST['firstname'],$_POST['mdp'],$_POST['date'],$_POST['tel'],$_POST['email'],$_POST['adres'],null, $_POST['sa']); 
+      if($initie->verifier_data() == 1){
+      echo 'mauvaise data'; 
+      }
+      elseif ($initie->ajouter_perso_bdd() == 0 ) {
+        echo 'candidat ajouté';
+      }
+      else{
+      echo 'candidat déjà inscrit'; 
+      }
     }
   }
 }
@@ -91,7 +104,7 @@ App\App::getDb()->modification_personnage();
 
 <div id="Compétence" class="tabcontentvertical">
   <div class = "presentation">
-    <div class="col-xs-8 " style="display: fixed" ></div>
+    <div class="col-xs-8 " style="display: " ></div>
       <h1><b>Diplôme</b> </h1>
       <ul class="liste_diplome">
           <?php foreach ($post as $diplome): ?> 
@@ -215,10 +228,6 @@ App\App::getDb()->modification_personnage();
               <input type="text" id="mdp" name="modification_mdp" class="form-control" placeholder="Mot de passe">
             </div>
             <div class="form-group">
-              <label for="Ent">Entreprise</label>
-              <input type="Comment" id="ent" name="modification_ent" class="form-control" placeholder="L'entreprise pour laquelle vous travaillez en tant que RH">
-            </div>
-            <div class="form-group">
               <label for="SA">Secteur d'actvité</label>
               <input type="text" id="sa" name = "modification_sa" class="form-control" placeholder="Votre secteur d'activité">
             </div>
@@ -261,27 +270,41 @@ if($_SESSION['type']==1){ ?>
   <h1><b>Offres Postés sur le site  </b> </h1>
     <ul class="liste_diplome">
 
+
       <?php foreach ($myoffer as $tentative): ?> 
         <li>
 
           
-          <h2><a href="<?= $tentative->getURL() ?>"><?= $tentative->nom; ?></a> </h2>
-          <h3>Les candidats sont :</h3>
+<h2><a href="<?= $tentative->getURL() ?>"><?= $tentative->nom; ?></a> </h2>
 
-          <ul class="liste_diplome">
-              <?php 
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Prénom </th>
+            <th>Téléphone</th>
+            <th>Mail</th>
+            <th>Profil</th>
+          </tr>
+        </thead>
+        <tbody>
+<?php $candidat_postulant=App\App::getDb()->prepare2('SELECT * FROM `membres` RIGHT JOIN postule ON (id = id_membre) WHERE id_offre= :offer AND id = :member',['member' =>$_SESSION['id'], 'offer' =>$tentative->id ], false); 
 
-            $candidat_postulant=App\App::getDb()->prepare2('SELECT * FROM `membres` RIGHT JOIN postule ON (id = id_membre) WHERE id_offre= :offer AND id = :member',['member' =>$_SESSION['id'], 'offer' =>$tentative->id ], false); 
+foreach ($candidat_postulant as $postulant): ?>      
+      <tr>
+        <td><?=$postulant->get_nom();?></td>
+        <td><?=$postulant->get_prenom();?></td>
+        <td><?=$postulant->get_telephone();?></td>
+        <td><?=$postulant->get_mail();?></td>
+        <td><a href="<?=$postulant->getURL()?>"> Lien</a></td>
+      </tr>
 
-              foreach ($candidat_postulant as $postulant): ?>
-
-                    <li>
-                      <form <form method="POST" action=""></form>
-                        <p><a href="<?= $postulant->getURL() ?>"><?= $postulant->get_full_nom(); ?></a></p>
-                    </li>              
           
-              <?php endforeach; ?>
-          </ul>
+<?php endforeach; ?>
+
+
+        </tbody>
+      </table>
         </li>
       <?php endforeach; ?> 
     </ul>
