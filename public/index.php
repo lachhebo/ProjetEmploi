@@ -16,7 +16,6 @@ if(isset($_GET['p'])){
 
 if(isset($_GET['q'])){
 	$q = $_GET['q']; 
-	//var_dump($q); 
  }
 
 
@@ -28,31 +27,62 @@ if($p === 'home'){
 } elseif ($p ==='offre'){
 	require '../pages/offre.php' ; 
 } elseif ($p === 'candidat') {
-	require '../pages/candidat.php'; 
+	if($_SESSION['type']==1){
+		require '../pages/candidat.php'; 
+	} else{
+		require '../pages/home.php'; 
+	}
 } elseif ($p === 'recherche' ) {
-	//echo 'le test marche';
 	$_GET['q'] = $q;  
 	require '../pages/recherche.php'; 
 } elseif ($p === 'liste_offre') {
 	require '../pages/liste_offre.php';
 } elseif ($p === 'profil'){
-	//echo 'le test marche'; 
-	//à sécuriser 
-	require '../pages/profil.php';
+	if(isset($_SESSION['id'])){
+		require '../pages/profil.php';
+	}
+	else{
+		require '../pages/home.php'; 
+	}
 } elseif ($p === 'inscription') {
-	require '../pages/inscription.php'; 
+	if(!isset($_SESSION['id'])){
+		require '../pages/inscription.php';
+	} else{
+		require '../pages/home.php'; 
+	}
 } elseif ($p === 'deconnexion') { 
-	require '../pages/deconnexion.php';
+	if(isset($_SESSION['id'])){
+		require '../pages/deconnexion.php';
+	}else{
+		require '../pages/home.php'; 
+	}
 } elseif ($p === 'liste_candidat') {
-	require '../pages/liste_candidat.php'; 
+	if($_SESSION['type']==1){
+		require '../pages/liste_candidat.php'; 
+	}
+	else{
+		require '../pages/home.php'; 
+	}
 } elseif ($p === 'creation_offre') {
-	//à securiser 
-	require '../pages/creation_offre.php'; 
+	if($_SESSION['type']==1){
+		require '../pages/creation_offre.php'; 
+	}
+	else{
+		require '../pages/home.php'; 
+	}
 } elseif ($p === 'recherche_candidat') {
-	$_GET['q'] = $q; 
-	require '../pages/recherche_candidat.php';
+	if($_SESSION['type']==1){
+		$_GET['q'] = $q; 
+		require '../pages/recherche_candidat.php';
+	}else{
+		require '../pages/home.php'; 
+	}
 } elseif ($p === 'messagerie') {
-	require '../pages/messagerie.php'; 
+	if(isset($_SESSION['id'])){
+		require '../pages/messagerie.php'; 
+	} else{
+		require '../pages/home.php'; 	
+	}
 }
 
 

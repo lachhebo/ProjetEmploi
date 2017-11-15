@@ -22,6 +22,9 @@ class Message{
 			$mypdostatement = $mypdo->prepare($sql); 
 
 
+			var_dump($texte);
+			var_dump($destination);
+			var_dump($origine); 
 			$mypdostatement->execute(array('content' => $texte,'id_origin' =>$origine, 'id_dest'=>$destination)); 
 		}
 		else{
@@ -33,7 +36,11 @@ class Message{
 
 			$mypdostatement->execute(array('content' => $texte, 'id_dest'=>$destination));
 
+
+
 		}
+
+		header("Refresh:0");
 
 
 

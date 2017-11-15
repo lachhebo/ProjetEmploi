@@ -30,6 +30,7 @@ if (isset($_SESSION['id'])) {
 }
 
 if(isset($_POST['message'])){
+	var_dump($post->rh_id);
 	App\Table\Message::envoyer($_POST['message'],$post->rh_id); 
 }
 
@@ -93,7 +94,7 @@ if(isset($_POST['postule'])){
 		<p><?= $rh_associe->get_mail(); ?> </p>
 
 
-		<?php if($blocage == false){ 		?>
+		<?php if($blocage == false and isset($_SESSION['id'])){ ?>
 		<form method="POST" action="">
 			<div class="form-group">
 				<label for="message">Message</label>

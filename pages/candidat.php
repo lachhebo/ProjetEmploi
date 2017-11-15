@@ -9,14 +9,17 @@ if ($post === false){
 	App::notfound(); 
 }
 
+$discussion = App\App::getDb()->prepare('SELECT * FROM message WHERE (id_origine = :membre AND id_destination= :rh) OR (id_origine = :rh AND id_destination= :membre) ORDER BY date_envoi', ['membre'=>$_GET['id'],'rh'=>$_SESSION['id']], 'App\Table\Message'); 
 
 
 if(isset($_POST['message'])){
+	var_dump($_GET['id']);
 	App\Table\Message::envoyer($_POST['message'],$_GET['id']); 
 }
 
 App\App::setTitle($post->get_nom()); 
 
+//var_dump($discussion_1);
 
 ?>
 
@@ -96,9 +99,28 @@ App\App::setTitle($post->get_nom());
 
 		<div>
 
-		<h1><b>Message : </b></h1>
+		<h1><b>Discussion : </b></h1>
 
 		<div class="liste_diplome" >
+
+
+				<ul class="liste_diplome">			
+
+			<?php foreach ($discussion as $dis): ?> 
+
+				<?php if($dis->id_origine == $_GET['id']){ ?>
+				    <li>
+				        <p style=" position: left;"><?= $dis->contenu ?></p>
+				    </li>
+				<?php }else{  ?>
+					<li>
+				        <p style=" position: right;"><?= $dis->contenu ?></p>
+				    </li>
+
+
+		    <?php } endforeach; ?> 
+
+		    </ul>
 
 			<form method="POST" action="">
 				<div class="form-group">
