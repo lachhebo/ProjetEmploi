@@ -13,7 +13,7 @@ class Database{
 
 	//Nom de la base de données
 	private $db_name;
-	//Utilisateur de la base de données (admin, utilisateur standart ...)
+	//Utilisateur de la base de données (admin, utilisateur standard ...)
 	private $db_user;
 	//Mdp de la base de données
 	private $db_pass;
