@@ -15,7 +15,7 @@ if(isset($_GET['p'])){
  	$p = 'home'; 
  }
 
-//
+//q pour query. On récupère la demande pour des ressources secondaires si la demande existe.
 if(isset($_GET['q'])){
 	$q = $_GET['q']; 
 }
