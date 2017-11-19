@@ -20,7 +20,7 @@ class Diplome{
 		//On récupère l'utilisateur possédant le diplome à ajouter
 		$origine = $_SESSION['id'];
 
-		//On déinit la requête
+		//On définit la requête
 		$sql = 'INSERT INTO diplome (nom, date_obtention, ecole,etudiant) VALUES (:name, :date_obtention, :ecole, :student)'; 
 		//On effectue la mise à jour de la bdd
 		$mypdostatement = $mypdo->prepare($sql); 
