@@ -1,10 +1,16 @@
 <?php
+
+//Si l'utilisateur est connecté
 if(isset($_POST['identififiant']) and isset($_POST['password'])) {
+	//On crée un objet Personnage via l'id et le password existant
 	$initie = new App\Table\Personnage(null, null,$_POST["password"],null,null, $_POST['identififiant'],null);
+	//On tente de connecter l'utilisateur via l'id et le password fourni
 	$test = $initie->connexion();
+	//Si la connection échoue, on détruit l'objet Personnage crée précédemment
 	if($test==1){
 		unset($initie);
 	}
+	//Si la connexion réussit, on récupère les données de l'utilisateur (nom, prénom ...) et on lui crée une session
 	else{
 		$initie->recuperer_donnee();
 		$initie->session();
@@ -54,6 +60,8 @@ if(isset($_POST['identififiant']) and isset($_POST['password'])) {
 						</div>
 						<div id="navbar" class="navbar-collapse collapse">
 								<ul class="nav navbar-nav">
+								
+									<!--On choisit les liens à afficher suivant les droits de l'utilisateur (candidat, RH ou visiteur)-->
 									<?php     ?>
 										<li><a href= "index.php"></span> Accueil</a></li>
 										<li><a href= "index.php?p=liste_offre">Offres</a></li>
@@ -74,9 +82,11 @@ if(isset($_POST['identififiant']) and isset($_POST['password'])) {
 								</ul>
 
 							 <ul class="nav navbar-nav navbar-right">
+									<!--On affiche le bouton de login de la navbar si l'utilisateur n'est pas connecté-->
 							 		<?php if(!isset($_SESSION['email'])){ ?>
 									 	<li><a data-toggle="modal" data-target="#loginModal">login  <span class="glyphicon glyphicon-log-in"></span></a></li>
 									 <?php }
+									 //Sinon on affiche un bouton de déconnexion pour donner la possibilité à l'utilisateur de mettre fin à se session
 									 else{ ?>
 									 	<li><a href="index.php?p=deconnexion">Deconnexion  <span class="glyphicon glyphicon-log-out"></span></a></li>
 
@@ -90,6 +100,7 @@ if(isset($_POST['identififiant']) and isset($_POST['password'])) {
 				</div>
 	 </nav>
 
+	 <!--On ne charge le code du modal de connexion que si l'utilisateur n'est pas connecté-->
 	 <?php if(!isset($_SESSION['email'])){ ?>
 
 		<div id="loginModal" class="modal fade" role="dialog">
@@ -129,17 +140,14 @@ if(isset($_POST['identififiant']) and isset($_POST['password'])) {
 </div>
 
 	<?php } ?>
-
-
-		<!-- FIN DU MENU :
-
-		-->
-
+	
+		<!--Le contenu principal de la page-->
 		<div class ="starter-template" >
 			<?= $content; ?>
 		</div>
 
-<!--  <footer class="footer-distributed">
+<!--  Problème d'affichage du footer
+		<footer class="footer-distributed">
 			<div class="footer-right">
 				<a href="#"><img src="../images/icon_fb.png" alt="icone facebook" /></a>
 				<a href="#"><img src="../images/icon_twitter.png" alt="icone twitter" /></a>
@@ -155,8 +163,5 @@ if(isset($_POST['identififiant']) and isset($_POST['password'])) {
 			</div>
 		</footer>
 -->
-
-
 	</body>
-
 </html>

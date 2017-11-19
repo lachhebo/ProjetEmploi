@@ -1,13 +1,16 @@
-<?php 
+<?php
 
+//Si l'utilisateur veut effectuer une recherche (il a rempli la barre de recherche et appuyé sur rechercher), on arrive ici
 if(isset($_POST['zone_recherche'])) {
+	//On redirige l'utilisateur vers une page générée dynamiquement en utilisant les données de la zone de recherche
+	//La page aura une interface similaire mais n'affichera que les offres rencontrant les critères de recherche renseignés par l'utilisateur
 	header("Location:../public/index.php?p=recherche&q=".$_POST['zone_recherche']);
 }
 
 ?>
 
 
-<div class="liste_offre"> 
+<div class="liste_offre">
 
 <div class= "row">
 	<div class="col-xs-8" class="liste_offre_1">
@@ -15,41 +18,32 @@ if(isset($_POST['zone_recherche'])) {
 		<h1 > Offres : </h1>
 
 			<?php foreach (App\Table\Offre::getLast() as $post):
-				 ?> 
-
+				 ?>
+				 //On génere un lien vers les offres.
 
 				<h2><a href="<?= $post->getURL() ?>"><?= $post->nom_offre; ?></a> </h2>
 				<p><em><?= $post->categorie ?> </em></p>
-
-
+				<!--On affiche un extrait du descriptif de l'offre-->
 				<p><?= $post->getExtrait(); ?></p>
+			<?php endforeach; ?>
+		</div>
 
-			<?php endforeach; ?> 
-	   	
-   
-	</div>
-
-	<div class="col-xs-4" class="list_offre_2">
-		<ul>
-			<div class="div-header">
+		<!--Formulaire pour effectuer des recherches sur les offres-->
+		<div class="col-xs-4" class="list_offre_2">
+			<ul>
+				<div class="div-header">
 					<p><span class="glyphicon glyphicon-search"></span> Effectuez une recherche d'offres :</p>
-			</div>
-			
-					
-
+				</div>
 				<form class="form" method="POST" action="">
-
 					<p>Chercher dans :</p>
 					<select class="form-control" id="emploi_choix_search">
 						<option>L'intitulé de l'offre</option>
 						<option>Le descriptif de l'offre</option>
 						<option>Les qualifications de l'offre</option>
 					</select>
-					
-					<p>les mots :</p>
 
+					<p>les mots :</p>
 					<input type="search" class="form-control" placeholder="Recherche..." name="zone_recherche" />
-					
 
 					<div class="divider"></div>
 
@@ -70,7 +64,6 @@ if(isset($_POST['zone_recherche'])) {
 					<div class="divider"></div>
 
 					<p>Domaines d'activité :</p>
-
 					<select class="big-select" name="secteur_activite[]" size="5" multiple="multiple">
 						<option>Agroalimentaire</option>
 						<option>Banque / Assurance</option>
@@ -92,8 +85,7 @@ if(isset($_POST['zone_recherche'])) {
 					</select>
 					<button type="submit"  class="btn btn-default btn-emploi-search"> <span class="glyphicon glyphicon-search"></span>Recherche </button>
 				</form>
-		</ul>
+			</ul>
+		</div>
 	</div>
-</div> 
-
 </div>

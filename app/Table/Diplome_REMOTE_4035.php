@@ -22,14 +22,10 @@ class Diplome{
 		$origine = $_SESSION['id'];
 
 		//On définit la requête
-		$sql = 'INSERT INTO diplome (nom, date_obtention, ecole,etudiant) VALUES (:name, :date_obtention, :ecole, :student)';
+		$sql = 'INSERT INTO diplome (nom, date_obtention, ecole,etudiant) VALUES (:name, :date_obtention, :ecole, :student)'; 
 		//On effectue la mise à jour de la bdd
 		$mypdostatement = $mypdo->prepare($sql);
 		$mypdostatement->execute(array('name' => $diplome,'date_obtention' =>$date_obtention, 'ecole'=>$ecole, 'student' =>$origine));
-
-		header("Refresh:0");
-
 	}
-
 }
 ?>

@@ -1,15 +1,15 @@
-<?php 
-$post = App\App::getDb()->prepare('SELECT nom, date_obtention, ecole FROM diplome WHERE etudiant = ?', [$_SESSION['id']], 'App\Table\Diplome'); 
+<?php
+$post = App\App::getDb()->prepare('SELECT nom, date_obtention, ecole FROM diplome WHERE etudiant = ?', [$_SESSION['id']], 'App\Table\Diplome');
 
-$exp = App\App::getDb()->prepare('SELECT * FROM experience WHERE id_membre = ?', [$_SESSION['id']], 'App\Table\Experience'); 
+$exp = App\App::getDb()->prepare('SELECT * FROM experience WHERE id_membre = ?', [$_SESSION['id']], 'App\Table\Experience');
 
 $postule = App\App::getDb()->prepare('SELECT * FROM offres WHERE id IN (SELECT id_offre FROM postule WHERE id_membre= ?)', [$_SESSION['id']], 'App\Table\Offre');
 
 $myoffer = App\App::getDb()->prepare('SELECT * FROM offres WHERE rh_id = ?', [$_SESSION['id']], 'App\Table\Offre');
-//var_dump($myoffer); 
+//var_dump($myoffer);
 
-$candidats_bloque = App\App::getDb()->prepare2('SELECT * FROM `membres` RIGHT JOIN blocage ON (id = id_membre) WHERE id_rh= ? ',[$_SESSION['id']], false); 
-//var_dump($candidats_bloque); 
+$candidats_bloque = App\App::getDb()->prepare2('SELECT * FROM `membres` RIGHT JOIN blocage ON (id = id_membre) WHERE id_rh= ? ',[$_SESSION['id']], false);
+//var_dump($candidats_bloque);
 
 if(isset($_POST['name']) and isset($_POST['firstname']) and isset($_POST['email']) and isset($_POST['mdp']) ) {
   if($_POST['name']!="" and $_POST['firstname']!="" and $_POST['email']!="" and $_POST['mdp']!=""){
@@ -17,25 +17,25 @@ if(isset($_POST['name']) and isset($_POST['firstname']) and isset($_POST['email'
     if (!isset($_POST['sa'])  ) {
       $initie = new App\Table\Personnage($_POST['name'],$_POST['firstname'],$_POST['mdp'],$_POST['date'],$_POST['tel'],$_POST['email'],$_POST['adres']);
       if($initie->verifier_data() == 1){
-      echo 'mauvaise data'; 
-      }
-      elseif ($initie->ajouter_perso_bdd() == 0 ) {
-        echo 'candidat ajouté'; 
-      }
-      else{
-      echo 'candidat déjà inscrit'; 
-      }
-    }
-    elseif($_POST['sa']!="" ) {
-      $initie = new App\Table\Personnage($_POST['name'],$_POST['firstname'],$_POST['mdp'],$_POST['date'],$_POST['tel'],$_POST['email'],$_POST['adres'],null, $_POST['sa']); 
-      if($initie->verifier_data() == 1){
-      echo 'mauvaise data'; 
+      echo 'mauvaise data';
       }
       elseif ($initie->ajouter_perso_bdd() == 0 ) {
         echo 'candidat ajouté';
       }
       else{
-      echo 'candidat déjà inscrit'; 
+      echo 'candidat déjà inscrit';
+      }
+    }
+    elseif($_POST['sa']!="" ) {
+      $initie = new App\Table\Personnage($_POST['name'],$_POST['firstname'],$_POST['mdp'],$_POST['date'],$_POST['tel'],$_POST['email'],$_POST['adres'],null, $_POST['sa']); 
+      if($initie->verifier_data() == 1){
+      echo 'mauvaise data';
+      }
+      elseif ($initie->ajouter_perso_bdd() == 0 ) {
+        echo 'candidat ajouté';
+      }
+      else{
+      echo 'candidat déjà inscrit';
       }
     }
   }
@@ -44,11 +44,11 @@ if(isset($_POST['name']) and isset($_POST['firstname']) and isset($_POST['email'
 if(isset($_POST['email_blocage'])){
 
   $vire = new App\Table\Personnage(null,null,null,null,null,$_POST['email_blocage'],null, null,null);
-  $vire->blacklister($_SESSION['id']);  
+  $vire->blacklister($_SESSION['id']);
 }
 
 if(isset($_POST['diplome']) and $_POST['diplome']!=null){
-  App\Table\diplome::ajouter($_POST['diplome'],$_POST['ecole'], $_POST['date_obtention']); 
+  App\Table\diplome::ajouter($_POST['diplome'],$_POST['ecole'], $_POST['date_obtention']);
 }
 
 App\App::getDb()->modification_personnage();
@@ -67,7 +67,7 @@ App\App::getDb()->modification_personnage();
   s<?php }  ?>
 
   <button class="tablinksvertical" onclick="openCity(event, 'Modifier mon profil')" id = "tabvertical4">Modifier mon profil</button>
-  <?php 
+  <?php
   if($_SESSION['type']==1){?>
     <button class="tablinksvertical" onclick="openCity(event, 'Mes offres')" id = "tabvertical5">Mes offres</button>
     <button class="tablinksvertical" onclick="openCity(event, 'Inscrire RH')" id = "tabvertical6">Inscrire un partenaire</button>
@@ -79,29 +79,29 @@ App\App::getDb()->modification_personnage();
     <div class = "presentation" >
 
       <h1><b>Nom</b> </h1>
-      <h2> <?= $_SESSION['nom'];?> </h2> 
+      <h2> <?= $_SESSION['nom'];?> </h2>
 
       <h1><b>Prenom</b> </h1>
-      <h2> <?= $_SESSION['prenom'];?> </h2> 
+      <h2> <?= $_SESSION['prenom'];?> </h2>
 
       <h1><b>Bio</b> </h1>
-      <h2> <?= $_SESSION['bio'];?> </h2> 
+      <h2> <?= $_SESSION['bio'];?> </h2>
 
       <h1><b>Email</b> </h1>
-      <h2> <?= $_SESSION['email'];?> </h2> 
+      <h2> <?= $_SESSION['email'];?> </h2>
 
       <h1><b>Télephone</b> </h1>
-      <h2> <?= $_SESSION['telephone'];?> </h2>       
+      <h2> <?= $_SESSION['telephone'];?> </h2>
 
       <h1><b>Adresse</b> </h1>
-      <h2> <?= $_SESSION['adresse'];?> </h2> 
+      <h2> <?= $_SESSION['adresse'];?> </h2>
 
 
       <h1><b>Date de naissance</b> </h1>
-      <h2> <?= $_SESSION['date_naissance'];?> </h2> 
+      <h2> <?= $_SESSION['date_naissance'];?> </h2>
 
       <h1><b>Date d'inscription</b> </h1>
-      <h2> <?= $_SESSION['date_inscription'];?> </h2> 
+      <h2> <?= $_SESSION['date_inscription'];?> </h2>
     </div>
 </div>
 
@@ -111,13 +111,13 @@ App\App::getDb()->modification_personnage();
     <div class="col-xs-8">
       <h1><b>Diplôme</b> </h1>
       <ul class="liste_diplome">
-          <?php foreach ($post as $diplome): ?> 
+          <?php foreach ($post as $diplome): ?>
             <li>
               <h2><?= $diplome->nom; ?></a></h2>
               <p><em><?= $diplome->date_obtention ?> </em></p>
               <p><b><em><?= $diplome->ecole; ?></em></b></p>
             </li>
-          <?php endforeach; ?> 
+          <?php endforeach; ?>
       </ul>
     </div>
     <div class ="col-xs-4">
@@ -150,14 +150,14 @@ App\App::getDb()->modification_personnage();
     <ul class="liste_diplome">
 
       <?php foreach ($exp as $experience):
-         ?> 
+         ?>
         <li>
           <h2>Poste: <?= $experience->poste; ?></a></h2>
           <p><em>Date de début: <?= $experience->date_obtention ?> </em></p>
           <p><em>Durée: <?= $experience->duree; ?> ans</em></p>
           <p><b><em><?= $experience->entreprise; ?></em></b></p>
         </li>
-      <?php endforeach; ?> 
+      <?php endforeach; ?>
     </ul>
   </div>
 </div>
@@ -168,13 +168,13 @@ App\App::getDb()->modification_personnage();
   <h1><b>Offres Postulés </b> </h1>
     <ul class="liste_diplome">
 
-      <?php foreach ($postule as $tentative): ?> 
+      <?php foreach ($postule as $tentative): ?>
         <li>
           <h2><a href="<?= $tentative->getURL() ?>"><?= $tentative->nom; ?></a> </h2>
           <p><em><?= $tentative->categorie ?> </em></p>
           <p><?= $tentative->getExtrait(); ?></p>
         </li>
-      <?php endforeach; ?> 
+      <?php endforeach; ?>
     </ul>
   </div>
 </div>
@@ -285,11 +285,11 @@ App\App::getDb()->modification_personnage();
         <tbody>
           <?php foreach ($myoffer as $tentative):
 
-            $candidat_postulant=App\App::getDb()->prepare('SELECT * FROM membres RIGHT JOIN postule ON (id = id_membre) RIGHT JOIN offres ON (id_offre = offres.id) WHERE id_offre= :offer AND rh_id = :member',['member' =>$_SESSION['id'], 'offer' =>$tentative->id ], 'App\Table\Postule'); 
-            //var_dump($myoffer); 
+            $candidat_postulant=App\App::getDb()->prepare('SELECT * FROM membres RIGHT JOIN postule ON (id = id_membre) RIGHT JOIN offres ON (id_offre = offres.id) WHERE id_offre= :offer AND rh_id = :member',['member' =>$_SESSION['id'], 'offer' =>$tentative->id ], 'App\Table\Postule');
+            //var_dump($myoffer);
             var_dump($candidat_postulant);
 
-            foreach ($candidat_postulant as $postulant): ?>      
+            foreach ($candidat_postulant as $postulant): ?>
                 <tr>
                   <td><?=$postulant->nom;?></td>
                   <td><?=$postulant->mail;?></td>
@@ -299,7 +299,7 @@ App\App::getDb()->modification_personnage();
                   <td><a><button class="btn btn-danger">Refuser</button></a></td>
                 </tr>
             <?php endforeach; ?>
-          <?php endforeach; ?> 
+          <?php endforeach; ?>
         </tbody>
       </table>
   </div>
@@ -372,7 +372,7 @@ App\App::getDb()->modification_personnage();
                 <input type="text" id="adres" class="form-control" name="adres" placeholder="Adresse postale">
               </div>
               <button type="connexion" class="btn btn-default" id="inscription_btn_pro">Inscription</button>
-    </form> 
+    </form>
   </div>
 </div>
 
@@ -392,7 +392,7 @@ App\App::getDb()->modification_personnage();
         </thead>
         <tbody>
 
-        <?php foreach ($candidats_bloque as $tentative): ?> 
+        <?php foreach ($candidats_bloque as $tentative): ?>
           <tr>
                   <td><?=$tentative->get_nom();?></td>
                   <td><?=$tentative->get_prenom();?></td>
@@ -401,7 +401,7 @@ App\App::getDb()->modification_personnage();
           </tr>
 
 
-        <?php endforeach; ?> 
+        <?php endforeach; ?>
 
                 </tbody>
       </table>
@@ -423,5 +423,5 @@ App\App::getDb()->modification_personnage();
 
 </div>
 
- 
+
 </div>
