@@ -68,7 +68,6 @@ class Offre{
 		$mybase = App::getDb();
 		$mypdo = $mybase->getPDO();
 			//On définit la requête
-		$req = App::getDb()->getPDO()->prepare('INSERT INTO offres VALUES ');
 
 			//On prépare la requête d'insertion dans la bdd
 		$sql = "INSERT INTO offres (nom_offre, contenu, entreprise, categorie, adresse, rh_id) VALUES (:name , :description , :entreprise, :secteur, :adresse, :rh)";

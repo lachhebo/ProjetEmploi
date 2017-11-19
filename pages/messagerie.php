@@ -31,7 +31,9 @@ $message_envoye = App\App::getDb()->prepare('SELECT * FROM message LEFT JOIN mem
 					<th>Prénom </th>
 					<th>Téléphone</th>
 					<th>Mail</th>
-					<th>Profil</th>
+					<?php if($_SESSION['type']==1){ ?>
+						<th>Profil</th>
+					<?php } ?>
 				</tr>
 			</thead>
 			<tbody>
@@ -46,7 +48,10 @@ $message_envoye = App\App::getDb()->prepare('SELECT * FROM message LEFT JOIN mem
 						<td><?=$recu->telephone;?></td>
 						<td><?=$recu->mail;?></td>
 						<!--Ainsi qu'un lien vers les infos de l'interlocuteur-->
-						<td><a href="index.php?p=candidat&id=<?=$recu->id?>"> Lien</a></td>
+						<?php if($_SESSION['type']==1){ ?>
+							<td><a href="index.php?p=candidat&id=<?=$recu->id?>"> Lien</a></td>
+						<?php } ?>
+
 					</tr>
 				<?php endforeach; ?>
 
@@ -67,7 +72,9 @@ $message_envoye = App\App::getDb()->prepare('SELECT * FROM message LEFT JOIN mem
 					<th>Prénom </th>
 					<th>Téléphone</th>
 					<th>Mail</th>
-					<th>Profil</th>
+					<?php if($_SESSION['type']==1){ ?>
+						<th>Profil</th>
+					<?php } ?>
 				</tr>
 			</thead>
 			<tbody>
@@ -81,7 +88,9 @@ $message_envoye = App\App::getDb()->prepare('SELECT * FROM message LEFT JOIN mem
 						<td><?=$envoye->prenom;?></td>
 						<td><?=$envoye->telephone;?></td>
 						<td><?=$envoye->mail;?></td>
-						<td><a href="index.php?p=candidat&id=<?=$envoye->id;?>"> Lien</a></td>
+						<?php if($_SESSION['type']==1){ ?>
+							<td><a href="index.php?p=candidat&id=<?=$envoye->id?>"> Lien</a></td>
+						<?php } ?>
 					</tr>
 				<?php endforeach; ?>
 			</tbody>

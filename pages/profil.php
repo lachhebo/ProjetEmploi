@@ -27,7 +27,7 @@ if(isset($_POST['name']) and isset($_POST['firstname']) and isset($_POST['email'
       }
     }
     elseif($_POST['sa']!="" ) {
-      $initie = new App\Table\Personnage($_POST['name'],$_POST['firstname'],$_POST['mdp'],$_POST['date'],$_POST['tel'],$_POST['email'],$_POST['adres'],null, $_POST['sa']); 
+      $initie = new App\Table\Personnage($_POST['name'],$_POST['firstname'],$_POST['mdp'],$_POST['date'],$_POST['tel'],$_POST['email'],$_POST['adres'],null, $_POST['sa']);
       if($initie->verifier_data() == 1){
       echo 'mauvaise data';
       }
@@ -51,6 +51,10 @@ if(isset($_POST['diplome']) and $_POST['diplome']!=null){
   App\Table\diplome::ajouter($_POST['diplome'],$_POST['ecole'], $_POST['date_obtention']);
 }
 
+if(isset($_POST['experience']) and $_POST['experience']!=null){
+  App\Table\Experience::ajouter($_POST['experience'],$_POST['entrerprise'], $_POST['date'],$_POST['duree']);
+}
+
 App\App::getDb()->modification_personnage();
 
 ?>
@@ -63,8 +67,8 @@ App\App::getDb()->modification_personnage();
   <?php if($_SESSION['type']==0){  ?>
   <button class="tablinksvertical" onclick="openCity(event, 'Compétence')" id="tabvertical1">Compétences</button>
   <button class="tablinksvertical" onclick="openCity(event, 'Expérience')" id="tabvertical2">Expérience</button>
-  <button class="tablinksvertical" onclick="openCity(event, 'Offres postulé')" id = "tabvertical3">Offres postulé</button>
-  s<?php }  ?>
+  <button class="tablinksvertical" onclick="openCity(event, 'Offres postulé')" id = "tabvertical3">Offres postulés</button>
+  <?php }  ?>
 
   <button class="tablinksvertical" onclick="openCity(event, 'Modifier mon profil')" id = "tabvertical4">Modifier mon profil</button>
   <?php
@@ -145,9 +149,9 @@ App\App::getDb()->modification_personnage();
 
 <div id="Expérience" class="tabcontentvertical">
   <div class = "presentation" >
-
-  <h1><b>Expérience</b> </h1>
-    <ul class="liste_diplome">
+    <div class="col-xs-8">
+      <h1><b>Expérience</b> </h1>
+      <ul class="liste_diplome">
 
       <?php foreach ($exp as $experience):
          ?>
@@ -158,24 +162,72 @@ App\App::getDb()->modification_personnage();
           <p><b><em><?= $experience->entreprise; ?></em></b></p>
         </li>
       <?php endforeach; ?>
-    </ul>
+      </ul>
+    </div>
+  </div>
+  <div class ="col-xs-4">
+    <h1><b>Ajouter une Expérience</b> </h1>
+    <form method="POST" action="">
+      <div class="form-group">
+        <label for="experience">Expérience</label>
+        <input type="text" class="form-control" name = "experience" placeholder="Votre expérience">
+      </div>
+      <div class="form-group">
+        <label for="date_obtention">date</label>
+        <input type="date" class="form-control" name = "date" placeholder="Date de fin">
+      </div>
+      <div class="form-group">
+        <label for="date_obtention">Entreprise</label>
+        <input type="text" class="form-control" name = "entrerprise" placeholder="">
+      </div>
+      <div class="form-group">
+        <label for="durée">Durée</label>
+        <input type="text" class="form-control" name = "duree" placeholder="Durée de l'expérience">
+      </div>
+      <button type="submit" class="btn btn-primary">Envoyer</button>
+    </form>
   </div>
 </div>
 
 <div id="Offres postulé" class="tabcontentvertical" >
   <div class = "presentation" >
-
   <h1><b>Offres Postulés </b> </h1>
     <ul class="liste_diplome">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Offre </th>
+              <th>Lien</th>
+              <th>Statut</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php foreach ($postule as $tentative):
 
-      <?php foreach ($postule as $tentative): ?>
-        <li>
-          <h2><a href="<?= $tentative->getURL() ?>"><?= $tentative->nom; ?></a> </h2>
-          <p><em><?= $tentative->categorie ?> </em></p>
-          <p><?= $tentative->getExtrait(); ?></p>
-        </li>
-      <?php endforeach; ?>
-    </ul>
+            //  var_dump($tentative);
+              $offre_candidat = App\App::getDb()->prepare('SELECT * FROM postule WHERE id_offre =:tentative AND id_membre =:membre',['tentative' => $tentative->id, 'membre' => $_SESSION['id']], 'App\Table\Offre',true);
+              //var_dump($offre_candidat);
+              ?>
+
+              <tr>
+                <td><?= $tentative->nom_offre ?></td>
+                <td><a href="<?= $tentative->getURL() ?>"><?= $tentative->nom_offre; ?></a></td>
+                <?php   if($offre_candidat->statut == -1){ ?>
+                          <td><b>Candidature rejetée</b></td>
+                <?php } elseif ($offre_candidat->statut == 1) { ?>
+                          <td><b>Candidature accepté  </b></td>
+                <?php } elseif ($tentative->pourvu == 1 and $offre_candidat->statut == 0) { ?>
+                          <td><b>Offre pourvu  </b></td>
+                <?php } else{ ?>
+                          <td><b>En attente de réponse  </b></td>
+                <?php } ?>
+
+              </tr>
+
+            <?php endforeach;  ?>
+          </tbody>
+        </table>
+
   </div>
 </div>
 
@@ -183,6 +235,7 @@ App\App::getDb()->modification_personnage();
 <div id="Modifier mon profil" class="tabcontentvertical">
 
   <div class = "presentation" >
+
   <?php if($_SESSION['type']==0){ ?>
 
     <form class="form" method="POST" action="" >
@@ -285,21 +338,30 @@ App\App::getDb()->modification_personnage();
         <tbody>
           <?php foreach ($myoffer as $tentative):
 
+            //var_dump($tentative);
+
+            if($tentative->pourvu == 0){
+
             $candidat_postulant=App\App::getDb()->prepare('SELECT * FROM membres RIGHT JOIN postule ON (id = id_membre) RIGHT JOIN offres ON (id_offre = offres.id) WHERE id_offre= :offer AND rh_id = :member',['member' =>$_SESSION['id'], 'offer' =>$tentative->id ], 'App\Table\Postule');
             //var_dump($myoffer);
-            var_dump($candidat_postulant);
+            //var_dump($candidat_postulant);
 
-            foreach ($candidat_postulant as $postulant): ?>
+            foreach ($candidat_postulant as $postulant):
+              if($postulant->statut == 0){
+              ?>
+
                 <tr>
                   <td><?=$postulant->nom;?></td>
                   <td><?=$postulant->mail;?></td>
                   <td><a href="index.php?p=candidat&id=<?=$postulant->id?>"> Lien</a></td>
                   <td><a href="<?= $tentative->getURL() ?>"><?= $tentative->nom_offre; ?></a></td>
-                  <td><a><button class="btn btn-success">Engager</button></a></td>
-                  <td><a><button class="btn btn-danger">Refuser</button></a></td>
+                  <td><a href="index.php?p=engager&q=<?=$postulant->id_membre?>&offre=<?= $tentative->id ?>"><button class="btn btn-success">Engager</button></a></td>
+                  <td><a href="index.php?p=refuser&q=<?=$postulant->id_membre?>&offre=<?= $tentative->id ?>"><button class="btn btn-danger">Refuser</button></a></td>
                 </tr>
+              <?php } ?>
             <?php endforeach; ?>
-          <?php endforeach; ?>
+          <?php  } ?>
+          <?php endforeach;  ?>
         </tbody>
       </table>
   </div>

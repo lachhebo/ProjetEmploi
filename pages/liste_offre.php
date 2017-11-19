@@ -17,9 +17,9 @@ if(isset($_POST['zone_recherche'])) {
 
 		<h1 > Offres : </h1>
 
-			<?php foreach (App\Table\Offre::getLast() as $post):
+			<?php foreach (App\Table\Offre::getLast() as $post):  //On génere un lien vers les offres.
 				 ?>
-				 //On génere un lien vers les offres.
+
 
 				<h2><a href="<?= $post->getURL() ?>"><?= $post->nom_offre; ?></a> </h2>
 				<p><em><?= $post->categorie ?> </em></p>

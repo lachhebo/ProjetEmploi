@@ -42,6 +42,7 @@ if(isset($_POST['identififiant']) and isset($_POST['password'])) {
 			<title><?= App\App::getTitle(); ?> </title>
 
 			<script src = "js\script_tabulation.js"  type="text/javascript"></script>
+
 	</head>
 	<body>
 
@@ -60,7 +61,7 @@ if(isset($_POST['identififiant']) and isset($_POST['password'])) {
 						</div>
 						<div id="navbar" class="navbar-collapse collapse">
 								<ul class="nav navbar-nav">
-								
+
 									<!--On choisit les liens à afficher suivant les droits de l'utilisateur (candidat, RH ou visiteur)-->
 									<?php     ?>
 										<li><a href= "index.php"></span> Accueil</a></li>
@@ -140,7 +141,7 @@ if(isset($_POST['identififiant']) and isset($_POST['password'])) {
 </div>
 
 	<?php } ?>
-	
+
 		<!--Le contenu principal de la page-->
 		<div class ="starter-template" >
 			<?= $content; ?>
@@ -163,5 +164,7 @@ if(isset($_POST['identififiant']) and isset($_POST['password'])) {
 			</div>
 		</footer>
 -->
+
+
 	</body>
 </html>

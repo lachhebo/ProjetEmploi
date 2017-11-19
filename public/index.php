@@ -20,6 +20,10 @@ if(isset($_GET['q'])){
 	$q = $_GET['q'];
 }
 
+if(isset($_GET['offre'])){
+	$offre = $_GET['offre'];
+}
+
 
 //Aucune données (sauf les entêtes) n'est envoyée au navigateur. Elles sont temporairement mise en tampon
 //Problèmes possibles avec certains serveur Web (par exemple Apache)
@@ -113,8 +117,29 @@ if($p === 'home'){
 	} else{
 		require '../pages/home.php';
 	}
-}
+} elseif ($p === 'engager') {
+	//Seulement si l'utilisateur est connecté en tant que RH
 
+	if($_SESSION['type']==1){
+		$_GET['q'] = $q;
+		$_GET['offre']= $offre;
+		require '../pages/engager.php';
+	//Sinon on le redirige vers la page d'accueil
+	}else{
+		require '../pages/home.php';
+	}
+} elseif ($p === 'refuser') {
+	//Seulement si l'utilisateur est connecté en tant que RH
+
+	if($_SESSION['type']==1){
+		$_GET['q'] = $q;
+		$_GET['offre']= $offre;
+		require '../pages/refuser.php';
+	//Sinon on le redirige vers la page d'accueil
+	}else{
+		require '../pages/home.php';
+	}
+}
 
 
 //On vide le tampon de sortie. Son ancien contenu est stocké dans $content
