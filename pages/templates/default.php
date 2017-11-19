@@ -35,10 +35,6 @@ if(isset($_POST['identififiant']) and isset($_POST['password'])) {
 
 			<title><?= App\App::getTitle(); ?> </title>
 
-			<script src = "js\connect_as.js"  type="text/javascript"></script> 
-			<script src = "js\show_full_offer.js"  type="text/javascript"></script>
-			<script type="text/javascript" src="js\date.js" ></script>
-			<script src = "js\sign_in.js"  type="text/javascript"></script> 
 			<script src = "js\script_tabulation.js"  type="text/javascript"></script>
 	</head>
 	<body>
@@ -67,7 +63,7 @@ if(isset($_POST['identififiant']) and isset($_POST['password'])) {
 									<?php if(isset($_SESSION['email'])){  ?>
 										<li><a href=index.php?p=messagerie> Messagerie</a></li>
 									<?php } ?>
-									<?php if(isset($_SESSION['email']) and isset($_SESSION['entreprise']) ){  ?>
+									<?php if(isset($_SESSION['email']) and $_SESSION['type']==1 ){  ?>
 										<li><a href= "index.php?p=liste_candidat">Recherche candidat</a></li>
 										<li><a href= "index.php?p=creation_offre">Créer une offre</a></li>
 

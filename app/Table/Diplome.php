@@ -23,6 +23,8 @@ class Diplome{
 
 		$mypdostatement->execute(array('name' => $diplome,'date_obtention' =>$date_obtention, 'ecole'=>$ecole, 'student' =>$origine)); 
 
+		header("Refresh:0");
+
 	} 
 
 }

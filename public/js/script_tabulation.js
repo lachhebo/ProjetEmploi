@@ -1,10 +1,10 @@
 window.onload=function(){
-    console.log("test");
-   var test = document.getElementById("defaultOpen");
+    //console.log("test");
+    var test = document.getElementById("defaultOpen");
 
-   if (test != null){
-    test.click(); 
-   }
+    if (test != null){
+        test.click(); 
+    }
 }
 
 

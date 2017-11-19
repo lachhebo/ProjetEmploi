@@ -69,13 +69,13 @@ class Personnage{
 
 			$this->id = $verification['id']; 
 
-			$sql = "INSERT INTO blocage (id_rh, id_membre) VALUES( :rh , :black)";
+			$sql = "INSERT INTO blocage (id_rh, id_membre) VALUES( :rh , :membre)";
 
 
 			$mypdostatement = $mypdo->prepare($sql); 
 
 
-			$mypdostatement->execute(array('black' => $this->id, 'rh'=>$rh));
+			$mypdostatement->execute(array('membre' => $this->id, 'rh'=>$rh));
 
 
 		}

@@ -6,7 +6,7 @@ if ($post === false){
 	App::notfound(); 
 }
 
-App\App::setTitle($post->nom); 
+App\App::setTitle($post->nom_offre); 
 
 $rh_associe = App\App::getDb()->prepare2('SELECT * FROM `membres` WHERE id= ? ', [$post->rh_id], true); 
 
@@ -47,7 +47,7 @@ if(isset($_POST['postule'])){
 
 	<div class="liste_offre">
 
-		<h1><?= $post->nom; ?> </h1>
+		<h1><?= $post->nom_offre; ?> </h1>
 
 		<p><em><?= $post->categorie; ?></em></p>
 
@@ -84,7 +84,7 @@ if(isset($_POST['postule'])){
 
 		<h2>Proposé par : </h2>
 
-		<p><b>Nom: </b></p>
+		<p><b>nom: </b></p>
 		<p><?= $rh_associe->get_nom(); ?></p>
 
 		<p><b>Prénom: </b></p>

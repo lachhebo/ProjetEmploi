@@ -18,7 +18,7 @@ if(isset($_POST['zone_recherche'])) {
 				 ?> 
 
 
-				<h2><a href="<?= $post->getURL() ?>"><?= $post->nom; ?></a> </h2>
+				<h2><a href="<?= $post->getURL() ?>"><?= $post->nom_offre; ?></a> </h2>
 				<p><em><?= $post->categorie ?> </em></p>
 
 

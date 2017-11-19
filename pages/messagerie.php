@@ -34,7 +34,7 @@ $message_envoye = App\App::getDb()->prepare('SELECT * FROM message LEFT JOIN mem
         </thead>
         <tbody>
         <?php foreach ($message_recu as $recu):
-            var_dump($recu); ?>      
+          ?>      
           <tr>
             <td>$recu->contenu</td>
             <td><?=$recu->nom;?></td>

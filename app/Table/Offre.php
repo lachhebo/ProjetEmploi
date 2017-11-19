@@ -11,7 +11,7 @@ class Offre{
 
 	public static function getLast(){
 		return App::getDb()->query("
-			SELECT id, nom, contenu, categorie 
+			SELECT id, nom_offre, contenu, categorie 
 			FROM offres 
 			", __CLASS__);
 	}
@@ -20,35 +20,35 @@ class Offre{
 
 		if( $category =='None' and $niveau=='None'){
 			return App::getDb()->query('
-				SELECT id, nom, contenu, categorie 
+				SELECT id, nom_offre, contenu, categorie 
 				FROM offres 
-				WHERE nom 
+				WHERE nom_offre 
 				LIKE "%'.$requete.'%" 
 				', __CLASS__);
 		}
 		else if ($category !='None' and $niveau=='None'){
 			return App::getDb()->query("
-				SELECT id, nom, contenu, categorie 
+				SELECT id, nom_offre, contenu, categorie 
 				FROM offres 
 				WHERE 
-				nom LIKE %".$requete."% AND categorie = ".$category." 
+				nom_offre LIKE %".$requete."% AND categorie = ".$category." 
 
 				", __CLASS__);
 		}
 		else if ($category =='None' and $niveau!='None') {
 			return App::getDb()->query("
-				SELECT id, nom, contenu, categorie 
+				SELECT id, nom_offre, contenu, categorie 
 				FROM offres 
 				WHERE 
-				nom LIKE %".$requete."% AND niveau = ".$niveau."
+				nom_offre LIKE %".$requete."% AND niveau = ".$niveau."
 				", __CLASS__);
 		}
 		else{
 			return App::getDb()->query("
-				SELECT id, nom, contenu, categorie 
+				SELECT id, nom_offre, contenu, categorie 
 				FROM offres 
 				WHERE 
-				nom LIKE %".$requete."% AND categorie = ".$category." AND niveau = ".$niveau."
+				nom_offre LIKE %".$requete."% AND categorie = ".$category." AND niveau = ".$niveau."
 				", __CLASS__);
 
 		}
@@ -64,7 +64,7 @@ class Offre{
 		$req = App::getDb()->getPDO()->prepare('INSERT INTO offres VALUES ');
 
 
-		$sql = "INSERT INTO offres (nom, contenu, entreprise, categorie, adresse, rh_id) VALUES (:name , :description , :entreprise, :secteur, :adresse, :rh)";
+		$sql = "INSERT INTO offres (nom_offre, contenu, entreprise, categorie, adresse, rh_id) VALUES (:name , :description , :entreprise, :secteur, :adresse, :rh)";
 
 
 		$mypdostatement = $mypdo->prepare($sql);

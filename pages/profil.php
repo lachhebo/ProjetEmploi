@@ -41,9 +41,9 @@ if(isset($_POST['name']) and isset($_POST['firstname']) and isset($_POST['email'
   }
 }
 
-if(isset($_POST['name_blocage']) and isset($_POST['firstname_blocage']) and isset($_POST['email_blocage'])){
+if(isset($_POST['email_blocage'])){
 
-  $vire = new App\Table\Personnage($_POST['name_blocage'],$_POST['firstname_blocage'],null,null,null,$_POST['email_blocage'],null, null,null);
+  $vire = new App\Table\Personnage(null,null,null,null,null,$_POST['email_blocage'],null, null,null);
   $vire->blacklister($_SESSION['id']);  
 }
 
@@ -60,9 +60,12 @@ App\App::getDb()->modification_personnage();
 
 <div class="tabvertical" >
   <button class="tablinksvertical" onclick="openCity(event, 'Mon Profil')" id="defaultOpen">Mon Profil</button>
+  <?php if($_SESSION['type']==0){  ?>
   <button class="tablinksvertical" onclick="openCity(event, 'Compétence')" id="tabvertical1">Compétences</button>
   <button class="tablinksvertical" onclick="openCity(event, 'Expérience')" id="tabvertical2">Expérience</button>
   <button class="tablinksvertical" onclick="openCity(event, 'Offres postulé')" id = "tabvertical3">Offres postulé</button>
+  s<?php }  ?>
+
   <button class="tablinksvertical" onclick="openCity(event, 'Modifier mon profil')" id = "tabvertical4">Modifier mon profil</button>
   <?php 
   if($_SESSION['type']==1){?>
@@ -102,9 +105,10 @@ App\App::getDb()->modification_personnage();
     </div>
 </div>
 
+
 <div id="Compétence" class="tabcontentvertical">
   <div class = "presentation">
-    <div class="col-xs-8 " style="display: " ></div>
+    <div class="col-xs-8">
       <h1><b>Diplôme</b> </h1>
       <ul class="liste_diplome">
           <?php foreach ($post as $diplome): ?> 
@@ -136,6 +140,8 @@ App\App::getDb()->modification_personnage();
     </div>
   </div>
 </div>
+
+
 
 <div id="Expérience" class="tabcontentvertical">
   <div class = "presentation" >
@@ -260,54 +266,42 @@ App\App::getDb()->modification_personnage();
     </div>
 </div>
 
-<?php 
-
-if($_SESSION['type']==1){ ?>
 
 <div id="Mes offres" class="tabcontentvertical">
   <div class = "presentation" >
 
   <h1><b>Offres Postés sur le site  </b> </h1>
-    <ul class="liste_diplome">
-
-
-      <?php foreach ($myoffer as $tentative): ?> 
-        <li>
-
-          
-<h2><a href="<?= $tentative->getURL() ?>"><?= $tentative->nom; ?></a> </h2>
-
       <table class="table table-striped">
         <thead>
           <tr>
-            <th>Nom</th>
-            <th>Prénom </th>
-            <th>Téléphone</th>
+            <th>Nom </th>
             <th>Mail</th>
             <th>Profil</th>
+            <th>Offre</th>
+            <th>Accepter</th>
+            <th>Refuser</th>
           </tr>
         </thead>
         <tbody>
-<?php $candidat_postulant=App\App::getDb()->prepare2('SELECT * FROM `membres` RIGHT JOIN postule ON (id = id_membre) WHERE id_offre= :offer AND id = :member',['member' =>$_SESSION['id'], 'offer' =>$tentative->id ], false); 
+          <?php foreach ($myoffer as $tentative):
 
-foreach ($candidat_postulant as $postulant): ?>      
-      <tr>
-        <td><?=$postulant->get_nom();?></td>
-        <td><?=$postulant->get_prenom();?></td>
-        <td><?=$postulant->get_telephone();?></td>
-        <td><?=$postulant->get_mail();?></td>
-        <td><a href="<?=$postulant->getURL()?>"> Lien</a></td>
-      </tr>
+            $candidat_postulant=App\App::getDb()->prepare('SELECT * FROM membres RIGHT JOIN postule ON (id = id_membre) RIGHT JOIN offres ON (id_offre = offres.id) WHERE id_offre= :offer AND rh_id = :member',['member' =>$_SESSION['id'], 'offer' =>$tentative->id ], 'App\Table\Postule'); 
+            //var_dump($myoffer); 
+            var_dump($candidat_postulant);
 
-          
-<?php endforeach; ?>
-
-
+            foreach ($candidat_postulant as $postulant): ?>      
+                <tr>
+                  <td><?=$postulant->nom;?></td>
+                  <td><?=$postulant->mail;?></td>
+                  <td><a href="index.php?p=candidat&id=<?=$postulant->id?>"> Lien</a></td>
+                  <td><a href="<?= $tentative->getURL() ?>"><?= $tentative->nom_offre; ?></a></td>
+                  <td><a><button class="btn btn-success">Engager</button></a></td>
+                  <td><a><button class="btn btn-danger">Refuser</button></a></td>
+                </tr>
+            <?php endforeach; ?>
+          <?php endforeach; ?> 
         </tbody>
       </table>
-        </li>
-      <?php endforeach; ?> 
-    </ul>
   </div>
 </div>
 
@@ -326,14 +320,6 @@ foreach ($candidat_postulant as $postulant): ?>
             <div class="form-group">
               <label for="mdp">Mot de passe</label>
               <input type="text" id="mdp" name="mdp" class="form-control" placeholder="Mot de passe">
-            </div>
-            <div class="form-group">
-              <label for="Ent">Entreprise</label>
-              <input type="Comment" id="ent" name="ent" class="form-control" placeholder="L'entreprise pour laquelle vous travaillez en tant que RH">
-            </div>
-            <div class="form-group">
-              <label for="SA">Secteur d'actvité</label>
-              <input type="text" id="sa" name = "sa" class="form-control" placeholder="Votre secteur d'activité">
             </div>
             <div class="form-group">
               <label for="tel">Téléphone</label>
@@ -392,38 +378,50 @@ foreach ($candidat_postulant as $postulant): ?>
 
 <div id="Securité" class="tabcontentvertical">
   <div class = "presentation" >
-    <h1><b> Candidat bloqué :  </b> </h1>
-      <ul class="liste_diplome">
+    <div class="col-xs-8" >
+      <h1><b> Candidat bloqué :  </b> </h1>
 
-      <?php foreach ($candidats_bloque as $tentative): ?> 
-        <li>
-          <h2><?= $tentative->get_nom(); ?></a> </h2>
-        </li>
-      <?php endforeach; ?> 
-    </ul>
-  </div>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Prénom </th>
+            <th>Mail</th>
+            <th>Profil</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        <?php foreach ($candidats_bloque as $tentative): ?> 
+          <tr>
+                  <td><?=$tentative->get_nom();?></td>
+                  <td><?=$tentative->get_prenom();?></td>
+                  <td><?=$tentative->get_mail();?></td>
+                  <td><a href="<?=$postulant->getURL()?>"> Lien</a></td>
+          </tr>
 
 
-  <div class = "presentation col-xs-8"  >
+        <?php endforeach; ?> 
+
+                </tbody>
+      </table>
+    </div>
+
+
+  <div class = "col-xs-4"  >
     <h1><b>Fomulaire de blocage:  </b> </h1>
     <form class="form" method="POST" action="" >
-        <div class="form-group">
-          <label for="name">Nom :</label>
-          <input type="text" id="name_blocage" class="form-control" placeholder="Nom" name="name_blocage">
-        </div>
-        <div class="form-group">
-          <label for="firstname">Prénom: </label>
-          <input type="text" id="firstname_blocage" class="form-control" name="firstname_blocage" placeholder="Prénom">
-        </div>
-        <div class="form-group">
-          <label for="email">Email: </label>
+        <div class="form-group" >
+          <label for="email_blocage">Email: </label>
           <input type="text" id="email_blocage" class="form-control" name="email_blocage" placeholder="Mail">
         </div>
         <button type="connexion" class="btn btn-default" id="inscription_btn_pro">Inscription</button>
+
     </form>
   </div>
+
+
 </div>
 
-<?php } ?>
  
 </div>
