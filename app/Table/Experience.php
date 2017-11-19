@@ -10,6 +10,7 @@ namespace App\Table;
 //On utilise le fichier contenant les données principales du site
 use App\App; 
 
+//Classe Experience
 class Experience{
 
 

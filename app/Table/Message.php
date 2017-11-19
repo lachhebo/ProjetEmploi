@@ -11,6 +11,7 @@ namespace App\Table;
 //On utilise le fichier contenant les données principales du site
 use App\App; 
 
+//Classe Message
 class Message{
 
 	//Fonction permettant d'envoyer un message (contenu dans $texte) à un autre utilisateur ($destination)

@@ -11,6 +11,7 @@ namespace App\Table;
 //On utilise le fichier contenant les données principales du site
 use App\App; 
 
+//Classe Diplome
 class Diplome{
 	//Fonction permettant d'ajouter un diplome à la bdd
 	public static function ajouter($diplome,$ecole, $date_obtention){
