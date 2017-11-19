@@ -150,7 +150,8 @@ if(isset($_POST['identififiant']) and isset($_POST['password'])) {
 			<?= $content; ?>
 		</div>
 
-<!--  <footer class="footer-distributed">
+<!--  Problème d'affichage du footer
+		<footer class="footer-distributed">
 			<div class="footer-right">
 				<a href="#"><img src="../images/icon_fb.png" alt="icone facebook" /></a>
 				<a href="#"><img src="../images/icon_twitter.png" alt="icone twitter" /></a>
@@ -166,8 +167,5 @@ if(isset($_POST['identififiant']) and isset($_POST['password'])) {
 			</div>
 		</footer>
 -->
-
-
 	</body>
-
 </html>
