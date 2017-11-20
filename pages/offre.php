@@ -49,7 +49,6 @@ if (isset($_SESSION['id'])) {
 
 //Si le candidat veut envoyer un message non vide au RH
 if(isset($_POST['message'])){
-	var_dump($post->rh_id);
 	//On envoie le message
 	App\Table\Message::envoyer($_POST['message'],$post->rh_id);
 }

@@ -8,12 +8,12 @@ if (isset($_POST['name'])) {
 		//On vérifie l'entreprise
 		if (isset($_POST['entreprise'])) {
 			//On vérifie le secteur d'activité
-			if(isset($_POST['secteur_activite'])){ 
+			if(isset($_POST['secteur_activite'])){
 				//On vérifie l'adresse
 				if(isset($_POST['adresse'])){
-					App\Table\Offre::creer_offre($_POST['name'], $_POST['description'], $_POST['entreprise'], $_POST['secteur_activite'],$_POST['adresse']); 
+					App\Table\Offre::creer_offre($_POST['name'], $_POST['description'], $_POST['entreprise'], $_POST['secteur_activite'],$_POST['adresse']);
 				}
-			} 
+			}
 		}
 	}
 
@@ -24,11 +24,11 @@ if (isset($_POST['name'])) {
 
 
 <!--Formulaire correspondant aux données permettant la création d'une offre-->
-<div class="liste_offre"> 
-	<h1> Offre : </h1>
+<div class="liste_offre presentation">
+	<h1 class="text-center"> Offre : </h1>
 	<div class= "row" >
 		<div class="col-xs-2" ></div>
-			<div class="col-xs-6">
+			<div class="col-xs-8">
 				<form class="form" method="POST" action="" >
 			        <div class="form-group">
 			            <label for="name">Nom :</label>
