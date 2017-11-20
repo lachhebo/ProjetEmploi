@@ -17,15 +17,15 @@ Contient la parallax, ainsi que les liens vers les différentes pages du site
 	<div class="container">
 		<div class="row">
 			<div class="card">
-				<a href="./html/offres_emploi.html"><img src="./images/find_job.png" class="img_album" alt="Photo de montagne" data-holder-rendered="true" /></a>
+				<a href="#"><img src="./images/find_job.png" class="img_album" alt="Photo de montagne" data-holder-rendered="true" /></a>
 				<p class="card-text">Consultez nos offres d'emploi concernant des domaines divers et variés, et trouvez l'emploi qui vous correspond.</p>
 			</div>
 			<div class="card">
-				<a href="./html/Inscription_PRO.html"><img class="img_album" src="./images/profil_candidat.png" alt="Photo de montagne" /></a>
+				<a href="#"><img class="img_album" src="./images/profil_candidat.png" alt="Photo de montagne" /></a>
 				<p class="card-text">Inscrivez-vous sur le site en tant que candidat pour pouvoir postuler à nos offres d'emploi.</p>
 			</div>
 			<div class="card">
-				<a href="./html/contact.html"><img class="img_album" src="./images/contact_rh.png" alt="Photo de montagne" /></a>
+				<a href="#"><img class="img_album" src="./images/contact_rh.png" alt="Photo de montagne" /></a>
 				<p class="card-text">Entrez en contact avec nos recruteurs et commencez dès maintenant à élargir votre réseau professionnel.</p>
 			</div>
 		</div>
@@ -45,15 +45,15 @@ Contient la parallax, ainsi que les liens vers les différentes pages du site
 	<div class="container">
 		<div class="row">
 			<div class="card">
-				<a href="./html/offres_emploi.html"><img src="./images/postuler_offre.png" class="img_album" alt="Photo de montagne" data-holder-rendered="true" /></a>
+				<a href="#"><img src="./images/postuler_offre.png" class="img_album" alt="Photo de montagne" data-holder-rendered="true" /></a>
 				<p class="card-text">Postulez aux offres d'emploi de nos recruteurs.</p>
 			</div>
 			<div class="card">
-				<a href="./html/Inscription_PRO.html"><img class="img_album" src="./images/modif_profil.png" alt="Photo de montagne" /></a>
+				<a href="#"><img class="img_album" src="./images/modif_profil.png" alt="Photo de montagne" /></a>
 				<p class="card-text">Modifier votre profil à mesure que vous accumulez des compétences.</p>
 			</div>
 			<div class="card">
-				<a href="./html/contact.html"><img class="img_album" src="./images/rep_candidature.jpg" alt="Photo de montagne" /></a>
+				<a href="#"><img class="img_album" src="./images/rep_candidature.jpg" alt="Photo de montagne" /></a>
 				<p class="card-text">Consulter les réponses à vos candidatures.</p>
 			</div>
 		</div>
@@ -73,11 +73,11 @@ Contient la parallax, ainsi que les liens vers les différentes pages du site
 	<div class="container">
 		<div class="row">
 			<div class="card">
-				<a href="./html/creation_offre_emploi.html"><img src="./images/creer_offre.png" class="img_album" alt="Photo de montagne" data-holder-rendered="true" /></a>
+				<a href="#"><img src="./images/creer_offre.png" class="img_album" alt="Photo de montagne" data-holder-rendered="true" /></a>
 				<p class="card-text">Créer vos offres d'emploi et diffusez-les sur notre plateforme.</p>
 			</div>
 			<div class="card">
-				<a href="./html/Inscription_PRO.html"><img class="img_album" src="./images/find_candidate.png" alt="Photo de montagne" /></a>
+				<a href="#"><img class="img_album" src="./images/find_candidate.png" alt="Photo de montagne" /></a>
 				<p class="card-text">Cherchez parmi les candidats inscrits ceux dont le profil correspond le mieux à vos attentes, et contactez-les.</p>
 			</div>
 			<div class="card">
