@@ -18,8 +18,9 @@ App\App::setTitle($post->nom_offre);
 //On récupère le RH ayant posté l'offre (si l'utilisateur veut le contacter)
 $rh_associe = App\App::getDb()->prepare2('SELECT * FROM `membres` WHERE id= ? ', [$post->rh_id], true);
 
-
-$discussion = App\App::getDb()->prepare('SELECT * FROM message WHERE (id_origine = :membre AND id_destination= :rh) OR (id_origine = :rh AND id_destination= :membre) ORDER BY date_envoi', ['membre'=>$_SESSION['id'],'rh'=>$post->rh_id ], 'App\Table\Message');
+if(isset($_SESSION['id'])){
+	$discussion = App\App::getDb()->prepare('SELECT * FROM message WHERE (id_origine = :membre AND id_destination= :rh) OR (id_origine = :rh AND id_destination= :membre) ORDER BY date_envoi', ['membre'=>$_SESSION['id'],'rh'=>$post->rh_id ], 'App\Table\Message');
+}
 
 //true si l'utilisateur est blacklisté par le rh ayant posté l'offre, false sinon
 $blocage = false;
@@ -119,6 +120,7 @@ if(isset($_POST['postule'])){
 
 			<ul class="liste_diplome">
 
+					<?php if(isset($_SESSION['id'])){ ?>
 						<?php foreach ($discussion as $dis): ?>
 							<!--Une discussion est constitué de message. Pour chaque message, on le positionne à gauche ou à droite suivant l'interlocuteur qui l'a émis-->
 							<?php if($dis->id_origine == $_GET['id']){ ?>
@@ -131,7 +133,9 @@ if(isset($_POST['postule'])){
 								<!--Message à droite-->
 								<p style=" position: right;"><?= $dis->contenu ?></p>
 							</li>
-						<?php } endforeach; ?>
+						<?php } endforeach;
+					}
+							?>
 
 		</ul>
 
