@@ -34,14 +34,14 @@ if (isset($_SESSION['id'])) {
 	//Si le candidat n'est pas bloqué par le RH
 	if($candidats_bloque->get_mail() == null){
 		$blocage = false;
-	//S'il est bloqué par le rh
+		//S'il est bloqué par le rh
 	}else{
 		$blocage = true;
 	}
 	//Si le candidat a déjà postulé
 	if($post_postulation == null){
 		$verifier = true;
-	//S'il n'a pas postulé
+		//S'il n'a pas postulé
 	}else{
 		$verifier = false;
 	}
@@ -64,53 +64,52 @@ if(isset($_POST['postule'])){
 
 <!--Affichage des informations de l'offre d'emploi-->
 <div class = "liste_offre">
-	<div class="col-xs-8">
-		<div class="liste_offre">
-
-<div class="col-xs-8">
-
 	<div class="liste_offre">
 
-		<h1><?= $post->nom_offre; ?> </h1>
+		<div class="col-xs-8">
 
-			<p><b>Description: </b></p>
-			<p><?= $post->contenu; ?> </p>
+			<div class="liste_offre">
 
-			<p><b>Entreprise: </b></p>
-			<p><?= $post->entreprise; ?> </p>
+				<h1><?= $post->nom_offre; ?> </h1>
 
-			<p><b>Lieu: </b></p>
-			<p><?= $post->adresse; ?> </p>
+				<p><b>Description: </b></p>
+				<p><?= $post->contenu; ?> </p>
 
-			<!--Si l'utilisateur est connecté et n'a pas encore postulé à l'offre-->
+				<p><b>Entreprise: </b></p>
+				<p><?= $post->entreprise; ?> </p>
 
-			<?php if (isset($_SESSION['id']) and $verifier == true and $_SESSION['type']==0){ ?>
-				<!--On affiche le bouton permettant de postuler-->
-				<form method="POST" action="">
-					<input type="submit" name="postule" value="Postuler" />
-				</form>
-			<?php  } ?>
+				<p><b>Lieu: </b></p>
+				<p><?= $post->adresse; ?> </p>
+
+				<!--Si l'utilisateur est connecté et n'a pas encore postulé à l'offre-->
+
+				<?php if (isset($_SESSION['id']) and $verifier == true and $_SESSION['type']==0){ ?>
+					<!--On affiche le bouton permettant de postuler-->
+					<form method="POST" action="">
+						<input type="submit" name="postule" value="Postuler" class="btn btn-primary"/>
+					</form>
+				<?php  } ?>
+			</div>
 		</div>
+
 	</div>
 
-</div>
 
+	<!--Affichage des informations du RH ayant mis l'offre en ligne-->
+	<div class="col-xs-4">
+		<div class="liste_offre">
 
-<!--Affichage des informations du RH ayant mis l'offre en ligne-->
-<div class="col-xs-4">
-	<div class="liste_offre">
+			<h2>Proposé par : </h2>
+			<!--On affiche le nom, le prénom et le mail du RH-->
 
-		<h2>Proposé par : </h2>
-		<!--On affiche le nom, le prénom et le mail du RH-->
+			<p><b>nom: </b></p>
+			<p><?= $rh_associe->get_nom(); ?></p>
+			<p><b>Prénom: </b></p>
+			<p><?= $rh_associe->get_prenom(); ?></p>
+			<p><b>Mail: </b></p>
+			<p><?= $rh_associe->get_mail(); ?> </p>
 
-		<p><b>nom: </b></p>
-		<p><?= $rh_associe->get_nom(); ?></p>
-		<p><b>Prénom: </b></p>
-		<p><?= $rh_associe->get_prenom(); ?></p>
-		<p><b>Mail: </b></p>
-		<p><?= $rh_associe->get_mail(); ?> </p>
-
-		<!--Si 'lutilisateur n'est pas blacklisté par le RH-->
+			<!--Si 'lutilisateur n'est pas blacklisté par le RH-->
 
 		</div>
 
@@ -120,41 +119,42 @@ if(isset($_POST['postule'])){
 
 			<ul class="liste_diplome">
 
-					<?php if(isset($_SESSION['id'])){ ?>
-						<?php foreach ($discussion as $dis): ?>
-							<!--Une discussion est constitué de message. Pour chaque message, on le positionne à gauche ou à droite suivant l'interlocuteur qui l'a émis-->
-							<?php if($dis->id_origine == $_GET['id']){ ?>
+				<?php if(isset($_SESSION['id'])){ ?>
+					<?php foreach ($discussion as $dis): ?>
+						<!--Une discussion est constitué de message. Pour chaque message, on le positionne à gauche ou à droite suivant l'interlocuteur qui l'a émis-->
+						<?php if($dis->id_origine == $_GET['id']){ ?>
 							<li>
 								<!--Message à gauche-->
 								<p style=" position: left;"><?= $dis->contenu ?></p>
 							</li>
-							<?php }else{  ?>
+						<?php }else{  ?>
 							<li>
 								<!--Message à droite-->
 								<p style=" position: right;"><?= $dis->contenu ?></p>
 							</li>
 						<?php } endforeach;
 					}
-							?>
+					?>
 
-		</ul>
-
-
+				</ul>
 
 
 
-		<?php if($blocage == false and isset($_SESSION['id'])){ ?>
-			<!--On affiche l'interface permettant d'envoyer des messages au RH-->
-		<form method="POST" action="">
-			<div class="form-group">
-				<label for="message">Message</label>
-				<input type="text" class="form-control" name = "message" placeholder="Votre message">
+
+
+				<?php if($blocage == false and isset($_SESSION['id'])){ ?>
+					<!--On affiche l'interface permettant d'envoyer des messages au RH-->
+					<form method="POST" action="">
+						<div class="form-group">
+							<label for="message">Message</label>
+							<input type="text" class="form-control" name = "message" placeholder="Votre message">
+						</div>
+						<button type="submit" class="btn btn-primary">Envoyer</button>
+					</form>
+
+				<?php  } ?>
+
 			</div>
-			<button type="submit" class="btn btn-primary">Envoyer</button>
-		</form>
-
-		<?php  } ?>
 
 		</div>
-
 </div>

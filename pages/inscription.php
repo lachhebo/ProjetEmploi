@@ -28,8 +28,6 @@ if(isset($_POST['name']) and isset($_POST['firstname']) and isset($_POST['email'
 }
 ?>
 
-
-
 <!--"Code" HTML correspondant au formulaire d'inscription-->
 <div class="liste_offre">
 	<div class="row">
@@ -40,37 +38,37 @@ if(isset($_POST['name']) and isset($_POST['firstname']) and isset($_POST['email'
 			<form class="form" method="POST" action="" >
                 <div class="form-group">
 					<label for="name">Nom :</label>
-          <p id="name_problem" class="text-verif_form"></p>
+          <p id="name_problem" class="text-verif-form"></p>
 					<input type="text" id="name" class="form-control" placeholder="Nom" name="name">
                 </div>
                 <div class="form-group">
 					<label for="firstname">Prénom: </label>
-          <p id="firstname_problem" class="text-verif_form"></p>
+          <p id="firstname_problem" class="text-verif-form"></p>
 					<input type="text" id="firstname" class="form-control" name="firstname" placeholder="Prénom">
                 </div>
                 <div class="form-group">
 					<label for="mdp">Mot de passe: </label>
-          <p id="mdp_problem" class="text-verif_form"></p>
+          <p id="mdp_problem" class="text-verif-form"></p>
 					<input type="password" id="mdp" class="form-control" name="mdp" placeholder="Mot de passe">
                 </div>
                 <div class="form-group">
 					<label for="date">Date de naissance: </label>
-          <p id="date_problem" class="text-verif_form"></p>
+          <p id="date_problem" class="text-verif-form"></p>
 					<input type="date" name="date" class="form-group" id="date" placeholder="Annee-Mois-Jour">
                 </div>
                 <div class="form-group">
 					<label for="tel">Téléphone: </label>
-          <p id="tel_problem" class="text-verif_form"></p>
+          <p id="tel_problem" class="text-verif-form"></p>
 					<input type="tel" id="tel" class="form-control" name="tel" placeholder="Téléphone">
                 </div>
                 <div class="form-group">
 					<label for="email">Email: </label>
-          <p id="email_inscription_problem" class="text-verif_form"></p>
+          <p id="email_inscription_problem" class="text-verif-form"></p>
 					<input type="text" id="email_inscription" class="form-control" name="email" placeholder="Mail">
                 </div>
                 <div class="form-group">
 					<label for="adres">Adresse: </label>
-          <p id="adres_problem" class="text-verif_form"></p>
+          <p id="adres_problem" class="text-verif-form"></p>
 					<input type="text" id="adres" class="form-control" name="adres" placeholder="Adresse postale">
                 </div>
 				<button type="connexion" class="btn btn-default" id="inscription_btn_pro">Inscription</button>
@@ -86,3 +84,5 @@ if(isset($_POST['name']) and isset($_POST['firstname']) and isset($_POST['email'
 		</div>
 	</div>
 </div>
+
+<script src = "js\verif_formulaire.js"  type="text/javascript"></script>

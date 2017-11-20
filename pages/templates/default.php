@@ -30,7 +30,7 @@ if(isset($_POST['identififiant']) and isset($_POST['password'])) {
 			<meta name="description">
 			<meta name="author">
 
-			<link rel="stylesheet" href="./css/projet_emploi.css" />
+			<link rel="stylesheet" href="./css/projet_emploi.css" type="text/css"/>
 
 			<meta name="viewport" contents="width=device-width, initial-scale=1">
 
@@ -42,7 +42,7 @@ if(isset($_POST['identififiant']) and isset($_POST['password'])) {
 
 			<script src = "js\script_tabulation.js"  type="text/javascript"></script>
 			<script src = "js\sign_in.js"  type="text/javascript"></script>
-			<script src = "js\verif_formulaire.js"  type="text/javascript"></script>
+
 
 	</head>
 	<body>
