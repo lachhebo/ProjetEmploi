@@ -29,27 +29,28 @@ if(isset($_POST['identififiant']) and isset($_POST['password'])) {
 			<meta name="viewport" content="width=device-width, initial-scale=1">
 			<meta name="description">
 			<meta name="author">
-			<link rel="icon" href="../../favicon.ico">
 
 			<link rel="stylesheet" href="./css/projet_emploi.css" />
 
 			<meta name="viewport" contents="width=device-width, initial-scale=1">
 
-			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"> </script>
+			<script src="./JQuery/jquery-3.2.1.js"></script>
+			<link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+			<script src="./bootstrap/js/bootstrap.min.js"> </script>
 
 			<title><?= App\App::getTitle(); ?> </title>
 
 			<script src = "js\script_tabulation.js"  type="text/javascript"></script>
+			<script src = "js\sign_in.js"  type="text/javascript"></script>
+			<script src = "js\verif_formulaire.js"  type="text/javascript"></script>
 
 	</head>
 	<body>
 
 		<!--Début du menu-->
 
+		<nav class="navbar navbar-inverse  navbar-fixed-top"  role="navigation">
 								 <div class="container">
-									 <nav class="navbar navbar-inverse  navbar-fixed-top"  role="navigation">
 						<div class="navbar-header">
 								<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
 										<span class="sr-only">Toggle navigation</span>
@@ -116,7 +117,7 @@ if(isset($_POST['identififiant']) and isset($_POST['password'])) {
 					<div class="row">
 
 						<div class="col-xs-4">
-							<input type="text" name ="identififiant" class="form-control" placeholder="Email" id="email" name="email">
+							<input type="text" name ="identififiant" class="form-control" placeholder="Email" id="email_modal">
 						</div>
 						<div class="col-xs-4">
 							<input type="password" name ="password" class="form-control" placeholder="Password" id="password" name="password">

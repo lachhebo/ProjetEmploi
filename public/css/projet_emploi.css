@@ -144,6 +144,16 @@ div.tab button.active {
 	max-width:100%;
 }
 
+.border-red {
+	border-color:red !important;
+	box-shadow : 0 5px 5px rgba(255, 0, 0, .075) !important;
+}
+
+.border-green {
+	border-color:green !important;
+	box-shadow : 0 5px 5px rgba(0, 255, 0, .075) !important;
+}
+
 .candidate-menu, .rh-menu {
 	border-top:solid black 1px;
 }
@@ -369,14 +379,13 @@ div.tab button.active {
 .liste_offre {
 	margin-top: 50px;
 	margin-left: 50px;
-	margin-right: 50px; 
+	margin-right: 50px;
 }
 
 .liste_diplome{
-	list-style: none; 
+	list-style: none;
 	padding-left: 10px;
 }
-
 
 .modal_sign_in{
 	float:right;
@@ -521,12 +530,25 @@ div.tab button.active {
 	padding: 10px ;
 }
 
+.text-green {
+	color:green !important;
+}
+
 .text-left {
 	float:left;
 }
 
+.text-red {
+	color:red !important;
+}
+
 .text-right {
 	float:right;
+}
+
+.text-verif_form {
+	font-size:10px !important;
+	font-style:italic !important;
 }
 
 .visible {
