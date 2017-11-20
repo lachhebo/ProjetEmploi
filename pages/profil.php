@@ -63,19 +63,19 @@ App\App::getDb()->modification_personnage();
 <div class="page_profil">
 
 <div class="tabvertical" >
-  <button class="tablinksvertical" onclick="openCity(event, 'Mon Profil')" id="defaultOpen">Mon Profil</button>
+  <button class="tablinksvertical" id="defaultOpen">Mon Profil</button>
   <?php if($_SESSION['type']==0){  ?>
-  <button class="tablinksvertical" onclick="openCity(event, 'Compétence')" id="tabvertical1">Compétences</button>
-  <button class="tablinksvertical" onclick="openCity(event, 'Expérience')" id="tabvertical2">Expérience</button>
-  <button class="tablinksvertical" onclick="openCity(event, 'Offres postulé')" id = "tabvertical3">Offres postulés</button>
+  <button class="tablinksvertical"  id="tabvertical1">Compétences</button>
+  <button class="tablinksvertical"  id="tabvertical2">Expérience</button>
+  <button class="tablinksvertical"  id="tabvertical3">Offres postulés</button>
   <?php }  ?>
 
-  <button class="tablinksvertical" onclick="openCity(event, 'Modifier mon profil')" id = "tabvertical4">Modifier mon profil</button>
+  <button class="tablinksvertical" id="tabvertical4">Modifier mon profil</button>
   <?php
   if($_SESSION['type']==1){?>
-    <button class="tablinksvertical" onclick="openCity(event, 'Mes offres')" id = "tabvertical5">Mes offres</button>
-    <button class="tablinksvertical" onclick="openCity(event, 'Inscrire RH')" id = "tabvertical6">Inscrire un partenaire</button>
-    <button class="tablinksvertical" onclick="openCity(event, 'Securité')" id = "tabvertical7">Securité</button>
+    <button class="tablinksvertical"  id="tabvertical5">Mes offres</button>
+    <button class="tablinksvertical" id="tabvertical6">Inscrire un partenaire</button>
+    <button class="tablinksvertical" id="tabvertical7">Securité</button>
   <?php } ?>
 </div>
 

@@ -3,51 +3,48 @@ window.onload=function(){
     var test = document.getElementById("defaultOpen");
 
     if (test != null){
-        test.click(); 
+        test.click();
+    }
+
+    if(document.getElementById("tabvertical8")!= null){
+      document.getElementById("tabvertical8").addEventListener("click", function(event) {openTab(event,"Message envoyés");});
+      document.getElementById("defaultOpen").addEventListener("click", function(e) {openTab(e, "Message reçu");});
+    }
+
+    if(document.getElementById("tabvertical4") != null){
+      document.getElementById("defaultOpen").addEventListener("click", function(e) {openTab(e, "Mon Profil");});
+      document.getElementById("tabvertical4").addEventListener("click", function(event) {openTab(event,"Modifier mon profil");});
+
+      if(  document.getElementById("tabvertical1") != null){
+        document.getElementById("tabvertical1").addEventListener("click", function(event) {openTab(event,"Compétence");});
+        document.getElementById("tabvertical2").addEventListener("click", function(event) {openTab(event,"Expérience");});
+        document.getElementById("tabvertical3").addEventListener("click", function(event) {openTab(event,"Offres postulé");});
+      }
+      else{
+        document.getElementById("tabvertical5").addEventListener("click", function(event) {openTab(event,"Mes offres");});
+        document.getElementById("tabvertical6").addEventListener("click", function(event) {openTab(event,"Inscrire RH");});
+        document.getElementById("tabvertical7").addEventListener("click", function(event) {openTab(event,"Securité");});
+      }
     }
 }
 
+function openTab(evt, cityName) {
 
-function opentab(evt, Formulaire) {
-    // Declare all variables
     var i, tabcontent, tablinks;
 
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
 
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(Formulaire).style.display = "block";
-    evt.currentTarget.className += " active";
-}
-
-
-
-function openCity(evt, cityName) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
-
-    // Get all elements with class="tabcontent" and hide them
     tabcontent = document.getElementsByClassName("tabcontentvertical");
     for (i = 0; i < tabcontent.length; i++) {
         tabcontent[i].style.display = "none";
     }
 
-    // Get all elements with class="tablinks" and remove the class "active"
+
     tablinks = document.getElementsByClassName("tablinksvertical");
     for (i = 0; i < tablinks.length; i++) {
         tablinks[i].className = tablinks[i].className.replace(" active", "");
     }
 
-    // Show the current tab, and add an "active" class to the link that opened the tab
+    
     document.getElementById(cityName).style.display = "block";
-    evt.currentTarget.className += " active";
+
 }
