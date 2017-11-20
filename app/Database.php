@@ -33,7 +33,7 @@ class Database{
 	public function getPDO(){
 		//Si notre objet n'a pas de connexion à la bdd, on essaie  d'en créer une
 		if ($this->pdo === null) {
-			$pdo = new PDO('mysql:host=localhost;dbname=espace_membre;charset=utf8', 'root', '1234azer');
+			$pdo = new PDO('mysql:host=localhost;dbname=espace_membre;charset=utf8', 'root', '');
 			$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			$this->pdo = $pdo;
 		}

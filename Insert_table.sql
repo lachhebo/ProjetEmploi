@@ -8,17 +8,6 @@ INSERT INTO `blocage` (`id_blocage`, `id_rh`, `id_membre`) VALUES
 
 -- --------------------------------------------------------
 
---
--- Table structure for table `diplome`
---
-
-CREATE TABLE `diplome` (
-  `id` int(11) NOT NULL,
-  `nom` varchar(255) DEFAULT NULL,
-  `date_obtention` date DEFAULT NULL,
-  `etudiant` int(11) NOT NULL,
-  `ecole` varchar(255) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `diplome`
@@ -53,26 +42,6 @@ INSERT INTO `experience` (`id`, `poste`, `date_obtention`, `duree`, `entreprise`
 (14, 'Postier', '2017-10-31', 3, 'Coinla', 40);
 
 -- --------------------------------------------------------
-
---
--- Table structure for table `membres`
---
-
-CREATE TABLE `membres` (
-  `id` int(11) NOT NULL,
-  `nom` varchar(26) NOT NULL,
-  `prenom` varchar(255) DEFAULT NULL,
-  `date_naissance` date DEFAULT NULL,
-  `date_inscription` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `telephone` int(11) DEFAULT NULL,
-  `mail` varchar(255) CHARACTER SET utf8 NOT NULL,
-  `adresse` varchar(255) DEFAULT NULL,
-  `motdepasse` varchar(40) NOT NULL,
-  `entreprise` varchar(255) DEFAULT NULL,
-  `secteur_activite` varchar(255) DEFAULT NULL,
-  `type` tinyint(1) NOT NULL DEFAULT '0',
-  `bio` text
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `membres`

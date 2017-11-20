@@ -79,7 +79,38 @@ CREATE TABLE `offres` (
 
 
 
+--
+-- Table structure for table `membres`
+--
 
+CREATE TABLE `membres` (
+  `id` int(11) NOT NULL,
+  `nom` varchar(26) NOT NULL,
+  `prenom` varchar(255) DEFAULT NULL,
+  `date_naissance` date DEFAULT NULL,
+  `date_inscription` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `telephone` int(11) DEFAULT NULL,
+  `mail` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `adresse` varchar(255) DEFAULT NULL,
+  `motdepasse` varchar(40) NOT NULL,
+  `entreprise` varchar(255) DEFAULT NULL,
+  `secteur_activite` varchar(255) DEFAULT NULL,
+  `type` tinyint(1) NOT NULL DEFAULT '0',
+  `bio` text
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+
+--
+-- Table structure for table `diplome`
+--
+
+CREATE TABLE `diplome` (
+  `id` int(11) NOT NULL,
+  `nom` varchar(255) DEFAULT NULL,
+  `date_obtention` date DEFAULT NULL,
+  `etudiant` int(11) NOT NULL,
+  `ecole` varchar(255) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 
 --

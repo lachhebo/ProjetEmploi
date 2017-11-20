@@ -3,7 +3,12 @@ window.onload=function(){
     var test = document.getElementById("defaultOpen");
 
     if (test != null){
-        test.click();
+        if(document.getElementById("tabvertical8")!= null){
+            openTab(null, "Message reçu");
+        }else{
+            openTab(null, "Mon Profil");
+        }
+        
     }
 
     if(document.getElementById("tabvertical8")!= null){
@@ -43,8 +48,6 @@ function openTab(evt, cityName) {
     for (i = 0; i < tablinks.length; i++) {
         tablinks[i].className = tablinks[i].className.replace(" active", "");
     }
-
-    
     document.getElementById(cityName).style.display = "block";
 
 }
